@@ -1,0 +1,7 @@
+app/code/community/Mage/GoogleShopping app/code/community/Mage/GoogleShopping
+app/design/adminhtml/default/default/layout/googleshopping.xml app/design/adminhtml/default/default/layout/googleshopping.xml
+app/design/adminhtml/default/default/template/googleshopping app/design/adminhtml/default/default/template/googleshopping
+
+app/etc/modules/Mage_GoogleShopping.xml app/etc/modules/Mage_GoogleShopping.xml
+js/mage/adminhtml/googleshopping.js js/mage/adminhtml/googleshopping.js
+lib/Varien/Gdata/Gshopping lib/Varien/Gdata/Gshopping

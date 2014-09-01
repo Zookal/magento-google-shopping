@@ -1,0 +1,20 @@
+{
+    "name": "zookal/magento-google-shopping",
+    "license": "OSL-3.0",
+    "type": "magento-module",
+    "description": "Google Content API for Shopping",
+    "homepage": "http://www.zookal.com",
+    "require": {
+        "magento-hackathon/magento-composer-installer": "*"
+    },
+    "authors": [
+        {
+            "name": "Cyrill Schumacher",
+            "email": "cyrill@zookal.com"
+        },
+        {
+            "name": "Chris Zaharia",
+            "email": "chris@zookal.com"
+        }
+    ]
+}
