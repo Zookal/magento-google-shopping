@@ -29,7 +29,7 @@
     <modules>
         <Mage_GoogleShopping>
             <active>true</active>
-            <codePool>core</codePool>
+            <codePool>community</codePool>
             <depends>
                 <Mage_Catalog/>
             </depends>
