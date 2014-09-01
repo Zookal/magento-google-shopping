@@ -49,17 +49,17 @@ class Mage_GoogleShopping_Block_Adminhtml_Types_Edit_Attributes
         $this->setChild('add_button',
             $this->getLayout()->createBlock('adminhtml/widget_button')
                 ->setData(array(
-                    'label' => Mage::helper('googleshopping')->__('Add New Attribute'),
-                    'class' => 'add',
-                    'id'    => 'add_new_attribute',
+                    'label'    => Mage::helper('googleshopping')->__('Add New Attribute'),
+                    'class'    => 'add',
+                    'id'       => 'add_new_attribute',
                     'on_click' => 'gContentAttribute.add()'
                 ))
         );
         $this->setChild('delete_button',
             $this->getLayout()->createBlock('adminhtml/widget_button')
                 ->setData(array(
-                    'label' => Mage::helper('googleshopping')->__('Remove'),
-                    'class' => 'delete delete-product-option',
+                    'label'    => Mage::helper('googleshopping')->__('Remove'),
+                    'class'    => 'delete delete-product-option',
                     'on_click' => 'gContentAttribute.remove(event)'
                 ))
         );
@@ -82,7 +82,7 @@ class Mage_GoogleShopping_Block_Adminhtml_Types_Edit_Attributes
      *
      * @return string
      */
-    public function getFieldName ()
+    public function getFieldName()
     {
         return 'attributes';
     }
@@ -101,7 +101,7 @@ class Mage_GoogleShopping_Block_Adminhtml_Types_Edit_Attributes
 
         foreach ($attributesTree as $destination => $attributes) {
             $options[] = array(
-                'label' => $destination,
+                'label'    => $destination,
                 'is_group' => true,
             );
             foreach ($attributes as $attribute => $params) {
@@ -117,8 +117,8 @@ class Mage_GoogleShopping_Block_Adminhtml_Types_Edit_Attributes
         }
 
         $select = $this->getLayout()->createBlock('googleshopping/adminhtml_types_edit_select')
-            ->setId($this->getFieldId().'_{{index}}_gattribute')
-            ->setName($this->getFieldName().'[{{index}}][gcontent_attribute]')
+            ->setId($this->getFieldId() . '_{{index}}_gattribute')
+            ->setName($this->getFieldName() . '[{{index}}][gcontent_attribute]')
             ->setOptions($options);
 
         return $this->_toOneLineString($select->toHtml());
@@ -128,13 +128,14 @@ class Mage_GoogleShopping_Block_Adminhtml_Types_Edit_Attributes
      * Build HTML select element of attribute set attributes
      *
      * @param boolean $escapeJsQuotes
+     *
      * @return string
      */
     public function getAttributesSelectHtml($escapeJsQuotes = false)
     {
         $select = $this->getLayout()->createBlock('adminhtml/html_select')
-            ->setId($this->getFieldId().'_{{index}}_attribute')
-            ->setName($this->getFieldName().'[{{index}}][attribute_id]')
+            ->setId($this->getFieldId() . '_{{index}}_attribute')
+            ->setName($this->getFieldName() . '[{{index}}][attribute_id]')
             ->setOptions($this->_getAttributes($this->getAttributeSetId(), $escapeJsQuotes));
         return $select->getHtml();
     }
@@ -163,14 +164,15 @@ class Mage_GoogleShopping_Block_Adminhtml_Types_Edit_Attributes
      * Get attributes of an attribute set
      * Skip attributes not needed for Google Content
      *
-     * @param int $setId
+     * @param int     $setId
      * @param boolean $escapeJsQuotes
+     *
      * @return array
      */
     public function _getAttributes($setId, $escapeJsQuotes = false)
     {
         $attributes = Mage::getModel('googleshopping/attribute')->getAllowedAttributes($setId);
-        $result = array();
+        $result     = array();
 
         foreach ($attributes as $attribute) {
             /* @var $attribute Mage_Catalog_Model_Resource_Eav_Attribute */
@@ -185,6 +187,7 @@ class Mage_GoogleShopping_Block_Adminhtml_Types_Edit_Attributes
      * Encode the mixed $data into the JSON format
      *
      * @param mixed $data
+     *
      * @return string
      */
     protected function _toJson($data)
@@ -196,11 +199,11 @@ class Mage_GoogleShopping_Block_Adminhtml_Types_Edit_Attributes
      * Format string to one line, cut symbols \n and \r
      *
      * @param string $string
+     *
      * @return string
      */
     protected function _toOneLineString($string)
     {
         return str_replace(array("\r\n", "\n", "\r"), "", $string);
     }
-
 }

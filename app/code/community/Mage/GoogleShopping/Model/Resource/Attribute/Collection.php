@@ -48,8 +48,9 @@ class Mage_GoogleShopping_Model_Resource_Attribute_Collection extends Mage_Core_
     /**
      * Add attribute set filter
      *
-     * @param int $attributeSetId
+     * @param int    $attributeSetId
      * @param string $targetCountry two words ISO format
+     *
      * @return Mage_GoogleShopping_Model_Mysql4_Attribute_Collection
      */
     public function addAttributeSetFilter($attributeSetId, $targetCountry)
@@ -66,6 +67,7 @@ class Mage_GoogleShopping_Model_Resource_Attribute_Collection extends Mage_Core_
      * Add type filter
      *
      * @param int $type_id
+     *
      * @return Mage_GoogleShopping_Model_Mysql4_Attribute_Collection
      */
     public function addTypeFilter($type_id)
@@ -79,6 +81,7 @@ class Mage_GoogleShopping_Model_Resource_Attribute_Collection extends Mage_Core_
      *
      * @param bool $printQuery
      * @param bool $logQuery
+     *
      * @return  Mage_GoogleShopping_Model_Mysql4_Attribute_Collection
      */
     public function load($printQuery = false, $logQuery = false)
@@ -102,7 +105,7 @@ class Mage_GoogleShopping_Model_Resource_Attribute_Collection extends Mage_Core_
     {
         $this->getSelect()
             ->joinInner(
-                array('types'=>$this->getTable('googleshopping/types')),
+                array('types' => $this->getTable('googleshopping/types')),
                 'main_table.type_id=types.type_id',
                 array('attribute_set_id' => 'types.attribute_set_id', 'target_country' => 'types.target_country'));
         return $this;
@@ -122,6 +125,7 @@ class Mage_GoogleShopping_Model_Resource_Attribute_Collection extends Mage_Core_
      * Set flag - whether to join attribute_set_id to attributes or not
      *
      * @param bool $flag
+     *
      * @return bool
      */
     public function setJoinAttributeSetFlag($flag)

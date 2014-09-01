@@ -55,6 +55,7 @@ class Varien_Gdata_Gshopping_ItemQuery extends Zend_Gdata_Query
 
     /**
      * @param string $value
+     *
      * @return Zend_Gdata_Gbase_ItemQuery Provides a fluent interface
      */
     public function setId($value)
@@ -77,6 +78,7 @@ class Varien_Gdata_Gshopping_ItemQuery extends Zend_Gdata_Query
      * Set language code
      *
      * @param string $language code
+     *
      * @return Varien_Gdata_Gshopping_ItemQuery
      */
     public function setLanguage($language)
@@ -99,6 +101,7 @@ class Varien_Gdata_Gshopping_ItemQuery extends Zend_Gdata_Query
      * Set target country code
      *
      * @param string $targetCountry code
+     *
      * @return Varien_Gdata_Gshopping_ItemQuery
      */
     public function setTargetCountry($targetCountry)
@@ -121,6 +124,7 @@ class Varien_Gdata_Gshopping_ItemQuery extends Zend_Gdata_Query
      * Set default feed's URI
      *
      * @param string $uri URI
+     *
      * @return Varien_Gdata_Gshopping_ItemQuery
      */
     public function setFeedUri($uri)
@@ -136,7 +140,7 @@ class Varien_Gdata_Gshopping_ItemQuery extends Zend_Gdata_Query
      */
     public function getQueryUrl()
     {
-        $uri = $this->_defaultFeedUri;
+        $uri    = $this->_defaultFeedUri;
         $itemId = $this->_getItemId();
 
         return ($itemId !== null) ? "$uri/$itemId" : $uri . $this->getQueryString();

@@ -36,8 +36,9 @@ class Mage_GoogleShopping_Model_Attribute_Id extends Mage_GoogleShopping_Model_A
     /**
      * Set current attribute to entry (for specified product)
      *
-     * @param Mage_Catalog_Model_Product $product
+     * @param Mage_Catalog_Model_Product   $product
      * @param Varien_Gdata_Gshopping_Entry $entry
+     *
      * @return Varien_Gdata_Gshopping_Entry
      */
     public function convertAttribute($product, $entry)

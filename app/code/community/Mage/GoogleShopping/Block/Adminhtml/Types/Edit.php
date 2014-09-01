@@ -31,7 +31,6 @@
  * @package    Mage_GoogleShopping
  * @author     Magento Core Team <core@magentocommerce.com>
  */
-
 class Mage_GoogleShopping_Block_Adminhtml_Types_Edit extends Mage_Adminhtml_Block_Widget_Form_Container
 {
     public function __construct()
@@ -39,13 +38,13 @@ class Mage_GoogleShopping_Block_Adminhtml_Types_Edit extends Mage_Adminhtml_Bloc
         parent::__construct();
         $this->_blockGroup = 'googleshopping';
         $this->_controller = 'adminhtml_types';
-        $this->_mode = 'edit';
-        $model = Mage::registry('current_item_type');
+        $this->_mode       = 'edit';
+        $model             = Mage::registry('current_item_type');
         $this->_removeButton('reset');
         $this->_updateButton('save', 'label', $this->__('Save Mapping'));
         $this->_updateButton('save', 'id', 'save_button');
         $this->_updateButton('delete', 'label', $this->__('Delete Mapping'));
-        if(!$model->getId()) {
+        if (!$model->getId()) {
             $this->_removeButton('delete');
         }
     }
@@ -69,7 +68,7 @@ class Mage_GoogleShopping_Block_Adminhtml_Types_Edit extends Mage_Adminhtml_Bloc
      */
     public function getHeaderText()
     {
-        if(!is_null(Mage::registry('current_item_type')->getId())) {
+        if (!is_null(Mage::registry('current_item_type')->getId())) {
             return $this->__('Edit attribute set mapping');
         } else {
             return $this->__('New attribute set mapping');
@@ -85,5 +84,4 @@ class Mage_GoogleShopping_Block_Adminhtml_Types_Edit extends Mage_Adminhtml_Bloc
     {
         return 'icon-head head-customer-groups';
     }
-
 }

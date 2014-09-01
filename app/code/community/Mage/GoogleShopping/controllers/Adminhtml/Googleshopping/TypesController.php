@@ -31,7 +31,7 @@
  * @package    Mage_GoogleShopping
  * @name       Mage_GoogleShopping_Adminhtml_Googleshopping_TypesController
  * @author     Magento Core Team <core@magentocommerce.com>
-*/
+ */
 class Mage_GoogleShopping_Adminhtml_Googleshopping_TypesController extends Mage_Adminhtml_Controller_Action
 {
     /**
@@ -54,8 +54,8 @@ class Mage_GoogleShopping_Adminhtml_Googleshopping_TypesController extends Mage_
     protected function _initItemType()
     {
         $this->_title($this->__('Catalog'))
-             ->_title($this->__('Google Content'))
-             ->_title($this->__('Manage Attributes'));
+            ->_title($this->__('Google Content'))
+            ->_title($this->__('Manage Attributes'));
 
         Mage::register('current_item_type', Mage::getModel('googleshopping/type'));
         $typeId = $this->getRequest()->getParam('id');
@@ -85,8 +85,8 @@ class Mage_GoogleShopping_Adminhtml_Googleshopping_TypesController extends Mage_
     public function indexAction()
     {
         $this->_title($this->__('Catalog'))
-             ->_title($this->__('Google Content'))
-             ->_title($this->__('Manage Attributes'));
+            ->_title($this->__('Google Content'))
+            ->_title($this->__('Manage Attributes'));
 
         $this->_initAction()
             ->_addBreadcrumb(Mage::helper('googleshopping')->__('Attribute Maps'), Mage::helper('googleshopping')->__('Attribute Maps'))
@@ -166,7 +166,7 @@ class Mage_GoogleShopping_Adminhtml_Googleshopping_TypesController extends Mage_
     {
         /** @var $typeModel Mage_GoogleShopping_Model_Type */
         $typeModel = Mage::getModel('googleshopping/type');
-        $id = $this->getRequest()->getParam('type_id');
+        $id        = $this->getRequest()->getParam('type_id');
         if (!is_null($id)) {
             $typeModel->load($id);
         }
@@ -186,7 +186,7 @@ class Mage_GoogleShopping_Adminhtml_Googleshopping_TypesController extends Mage_
             }
             $typeModel->save();
 
-            $attributes = $this->getRequest()->getParam('attributes');
+            $attributes         = $this->getRequest()->getParam('attributes');
             $requiredAttributes = Mage::getSingleton('googleshopping/config')->getRequiredAttributes();
             if (is_array($attributes)) {
                 $typeId = $typeModel->getId();
@@ -221,7 +221,7 @@ class Mage_GoogleShopping_Adminhtml_Googleshopping_TypesController extends Mage_
     public function deleteAction()
     {
         try {
-            $id = $this->getRequest()->getParam('id');
+            $id    = $this->getRequest()->getParam('id');
             $model = Mage::getModel('googleshopping/type');
             $model->load($id);
             if ($model->getTypeId()) {
@@ -242,11 +242,11 @@ class Mage_GoogleShopping_Adminhtml_Googleshopping_TypesController extends Mage_
     {
         try {
             $this->getResponse()->setBody(
-            $this->getLayout()->createBlock('googleshopping/adminhtml_types_edit_attributes')
-                ->setAttributeSetId($this->getRequest()->getParam('attribute_set_id'))
-                ->setTargetCountry($this->getRequest()->getParam('target_country'))
-                ->setAttributeSetSelected(true)
-                ->toHtml()
+                $this->getLayout()->createBlock('googleshopping/adminhtml_types_edit_attributes')
+                    ->setAttributeSetId($this->getRequest()->getParam('attribute_set_id'))
+                    ->setTargetCountry($this->getRequest()->getParam('target_country'))
+                    ->setAttributeSetSelected(true)
+                    ->toHtml()
             );
         } catch (Exception $e) {
             Mage::logException($e);
@@ -280,7 +280,7 @@ class Mage_GoogleShopping_Adminhtml_Googleshopping_TypesController extends Mage_
      */
     public function _getStore()
     {
-        $storeId = (int) $this->getRequest()->getParam('store', 0);
+        $storeId = (int)$this->getRequest()->getParam('store', 0);
         if ($storeId == 0) {
             return Mage::app()->getDefaultStoreView();
         }

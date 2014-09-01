@@ -1,5 +1,4 @@
-<?xml version="1.0"?>
-<!--
+<?xml version="1.0"?><!--
 /**
  * Magento
  *
@@ -29,7 +28,9 @@
 <layout>
     <adminhtml_googleshopping_items_index>
         <reference name="head">
-            <action method="addJs"><file>mage/adminhtml/googleshopping.js</file></action>
+            <action method="addJs">
+                <file>mage/adminhtml/googleshopping.js</file>
+            </action>
         </reference>
     </adminhtml_googleshopping_items_index>
 </layout>

@@ -38,5 +38,4 @@ class Mage_GoogleShopping_Block_Adminhtml_Types_Edit_Select extends Mage_Adminht
         parent::__construct();
         $this->setTemplate('googleshopping/types/edit/select.phtml');
     }
-
 }

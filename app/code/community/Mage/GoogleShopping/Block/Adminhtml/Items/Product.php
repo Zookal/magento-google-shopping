@@ -48,9 +48,9 @@ class Mage_GoogleShopping_Block_Adminhtml_Items_Product extends Mage_Adminhtml_B
      */
     protected function _beforeToHtml()
     {
-        $this->setId($this->getId().'_'.$this->getIndex());
-        $this->getChild('reset_filter_button')->setData('onclick', $this->getJsObjectName().'.resetFilter()');
-        $this->getChild('search_button')->setData('onclick', $this->getJsObjectName().'.doFilter()');
+        $this->setId($this->getId() . '_' . $this->getIndex());
+        $this->getChild('reset_filter_button')->setData('onclick', $this->getJsObjectName() . '.resetFilter()');
+        $this->getChild('search_button')->setData('onclick', $this->getJsObjectName() . '.doFilter()');
         return parent::_beforeToHtml();
     }
 
@@ -91,15 +91,15 @@ class Mage_GoogleShopping_Block_Adminhtml_Items_Product extends Mage_Adminhtml_B
     protected function _prepareColumns()
     {
         $this->addColumn('id', array(
-            'header'    => Mage::helper('sales')->__('ID'),
-            'sortable'  => true,
-            'width'     => '60px',
-            'index'     => 'entity_id'
+            'header'   => Mage::helper('sales')->__('ID'),
+            'sortable' => true,
+            'width'    => '60px',
+            'index'    => 'entity_id'
         ));
         $this->addColumn('name', array(
-            'header'    => Mage::helper('sales')->__('Product Name'),
-            'index'     => 'name',
-            'column_css_class'=> 'name'
+            'header'           => Mage::helper('sales')->__('Product Name'),
+            'index'            => 'name',
+            'column_css_class' => 'name'
         ));
 
         $sets = Mage::getResourceModel('eav/entity_attribute_set_collection')
@@ -109,35 +109,35 @@ class Mage_GoogleShopping_Block_Adminhtml_Items_Product extends Mage_Adminhtml_B
 
         $this->addColumn('type',
             array(
-                'header'=> Mage::helper('catalog')->__('Type'),
-                'width' => '60px',
-                'index' => 'type_id',
-                'type'  => 'options',
+                'header'  => Mage::helper('catalog')->__('Type'),
+                'width'   => '60px',
+                'index'   => 'type_id',
+                'type'    => 'options',
                 'options' => Mage::getSingleton('catalog/product_type')->getOptionArray(),
-        ));
+            ));
 
         $this->addColumn('set_name',
             array(
-                'header'=> Mage::helper('catalog')->__('Attrib. Set Name'),
-                'width' => '100px',
-                'index' => 'attribute_set_id',
-                'type'  => 'options',
+                'header'  => Mage::helper('catalog')->__('Attrib. Set Name'),
+                'width'   => '100px',
+                'index'   => 'attribute_set_id',
+                'type'    => 'options',
                 'options' => $sets,
-        ));
+            ));
 
         $this->addColumn('sku', array(
-            'header'    => Mage::helper('sales')->__('SKU'),
-            'width'     => '80px',
-            'index'     => 'sku',
-            'column_css_class'=> 'sku'
+            'header'           => Mage::helper('sales')->__('SKU'),
+            'width'            => '80px',
+            'index'            => 'sku',
+            'column_css_class' => 'sku'
         ));
         $this->addColumn('price', array(
-            'header'    => Mage::helper('sales')->__('Price'),
-            'align'     => 'center',
-            'type'      => 'currency',
+            'header'        => Mage::helper('sales')->__('Price'),
+            'align'         => 'center',
+            'type'          => 'currency',
             'currency_code' => $this->_getStore()->getDefaultCurrencyCode(),
-            'rate'      => $this->_getStore()->getBaseCurrency()->getRate($this->_getStore()->getDefaultCurrencyCode()),
-            'index'     => 'price'
+            'rate'          => $this->_getStore()->getBaseCurrency()->getRate($this->_getStore()->getDefaultCurrencyCode()),
+            'index'         => 'price'
         ));
 
         return parent::_prepareColumns();
@@ -154,8 +154,8 @@ class Mage_GoogleShopping_Block_Adminhtml_Items_Product extends Mage_Adminhtml_B
         $this->getMassactionBlock()->setFormFieldName('product');
 
         $this->getMassactionBlock()->addItem('add', array(
-             'label'    => $this->__('Add to Google Content'),
-             'url'      => $this->getUrl('*/*/massAdd', array('_current'=>true)),
+            'label' => $this->__('Add to Google Content'),
+            'url'   => $this->getUrl('*/*/massAdd', array('_current' => true)),
         ));
         return $this;
     }
@@ -167,7 +167,7 @@ class Mage_GoogleShopping_Block_Adminhtml_Items_Product extends Mage_Adminhtml_B
      */
     public function getGridUrl()
     {
-        return $this->getUrl('*/googleshopping_selection/grid', array('index' => $this->getIndex(),'_current'=>true));
+        return $this->getUrl('*/googleshopping_selection/grid', array('index' => $this->getIndex(), '_current' => true));
     }
 
     /**

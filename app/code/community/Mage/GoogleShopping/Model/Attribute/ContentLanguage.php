@@ -36,15 +36,16 @@ class Mage_GoogleShopping_Model_Attribute_ContentLanguage extends Mage_GoogleSho
     /**
      * Set current attribute to entry (for specified product)
      *
-     * @param Mage_Catalog_Model_Product $product
+     * @param Mage_Catalog_Model_Product   $product
      * @param Varien_Gdata_Gshopping_Entry $entry
+     *
      * @return Varien_Gdata_Gshopping_Entry
      */
     public function convertAttribute($product, $entry)
     {
-        $config = Mage::getSingleton('googleshopping/config');
+        $config        = Mage::getSingleton('googleshopping/config');
         $targetCountry = $config->getTargetCountry($product->getStoreId());
-        $value = $config->getCountryInfo($targetCountry, 'language', $product->getStoreId());
+        $value         = $config->getCountryInfo($targetCountry, 'language', $product->getStoreId());
 
         return $this->_setAttribute($entry, 'content_language', self::ATTRIBUTE_TYPE_TEXT, $value);
     }

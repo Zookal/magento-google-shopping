@@ -48,6 +48,7 @@ class Varien_Gdata_Gshopping_Extension_Tax extends Zend_Gdata_App_Extension_Elem
      * Creates instance of class
      *
      * @param array $taxInfo as described in product requirements
+     *
      * @see http://code.google.com/intl/ru/apis/shopping/content/getting-started/requirements-products.html#tax
      */
     public function __construct(array $taxInfo = array())
@@ -69,6 +70,7 @@ class Varien_Gdata_Gshopping_Extension_Tax extends Zend_Gdata_App_Extension_Elem
      * Magic getter to add access to _taxInfo data
      *
      * @param string $name
+     *
      * @return mixed
      */
     public function __get($name)
@@ -86,7 +88,7 @@ class Varien_Gdata_Gshopping_Extension_Tax extends Zend_Gdata_App_Extension_Elem
     protected function takeChildFromDOM($child)
     {
         if ($child->nodeType == XML_ELEMENT_NODE) {
-            $name = ('attribute' == $child->localName) ? $child->getAttribute('name') : $child->localName;
+            $name                  = ('attribute' == $child->localName) ? $child->getAttribute('name') : $child->localName;
             $this->_taxInfo[$name] = $child->textContent;
         }
         parent::takeChildFromDOM($child);

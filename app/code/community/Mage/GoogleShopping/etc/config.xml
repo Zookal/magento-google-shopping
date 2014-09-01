@@ -1,5 +1,4 @@
-<?xml version="1.0"?>
-<!--
+<?xml version="1.0"?><!--
 /**
  * Magento
  *
@@ -66,7 +65,9 @@
             </googleshopping_setup>
         </resources>
         <blocks>
-            <googleshopping><class>Mage_GoogleShopping_Block</class></googleshopping>
+            <googleshopping>
+                <class>Mage_GoogleShopping_Block</class>
+            </googleshopping>
         </blocks>
     </global>
     <admin>

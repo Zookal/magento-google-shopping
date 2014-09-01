@@ -36,8 +36,9 @@ class Mage_GoogleShopping_Model_Attribute_Price extends Mage_GoogleShopping_Mode
     /**
      * Set current attribute to entry (for specified product)
      *
-     * @param Mage_Catalog_Model_Product $product
+     * @param Mage_Catalog_Model_Product   $product
      * @param Varien_Gdata_Gshopping_Entry $entry
+     *
      * @return Varien_Gdata_Gshopping_Entry
      */
     public function convertAttribute($product, $entry)
@@ -47,19 +48,19 @@ class Mage_GoogleShopping_Model_Attribute_Price extends Mage_GoogleShopping_Mode
             Mage::getStoreConfig(Mage_Customer_Model_Group::XML_PATH_DEFAULT_ID, $product->getStoreId())
         );
 
-        $store = Mage::app()->getStore($product->getStoreId());
-        $targetCountry = Mage::getSingleton('googleshopping/config')->getTargetCountry($product->getStoreId());
+        $store              = Mage::app()->getStore($product->getStoreId());
+        $targetCountry      = Mage::getSingleton('googleshopping/config')->getTargetCountry($product->getStoreId());
         $isSalePriceAllowed = ($targetCountry == 'US');
 
         // get tax settings
-        $taxHelp = Mage::helper('tax');
+        $taxHelp          = Mage::helper('tax');
         $priceDisplayType = $taxHelp->getPriceDisplayType($product->getStoreId());
-        $inclTax = ($priceDisplayType == Mage_Tax_Model_Config::DISPLAY_TYPE_INCLUDING_TAX);
+        $inclTax          = ($priceDisplayType == Mage_Tax_Model_Config::DISPLAY_TYPE_INCLUDING_TAX);
 
         // calculate sale_price attribute value
         $salePriceAttribute = $this->getGroupAttributeSalePrice();
-        $salePriceMapValue = null;
-        $finalPrice = null;
+        $salePriceMapValue  = null;
+        $finalPrice         = null;
         if (!is_null($salePriceAttribute)) {
             $salePriceMapValue = $salePriceAttribute->getProductAttributeValue($product);
         }
@@ -74,14 +75,14 @@ class Mage_GoogleShopping_Model_Attribute_Price extends Mage_GoogleShopping_Mode
 
         // calculate price attribute value
         $priceMapValue = $this->getProductAttributeValue($product);
-        $price = null;
+        $price         = null;
         if (!is_null($priceMapValue) && floatval($priceMapValue) > .0001) {
             $price = $priceMapValue;
         } else if ($isSalePriceAllowed) {
             $price = Mage::helper('googleshopping/price')->getCatalogRegularPrice($product, $store);
         } else {
             $inclTax = ($priceDisplayType != Mage_Tax_Model_Config::DISPLAY_TYPE_EXCLUDING_TAX);
-            $price = Mage::helper('googleshopping/price')->getCatalogPrice($product, $store, $inclTax);
+            $price   = Mage::helper('googleshopping/price')->getCatalogPrice($product, $store, $inclTax);
         }
         if ($product->getTypeId() != Mage_Catalog_Model_Product_Type::TYPE_BUNDLE) {
             $price = $taxHelp->getPrice($product, $price, $inclTax, null, null, null, $product->getStoreId());
@@ -96,8 +97,8 @@ class Mage_GoogleShopping_Model_Attribute_Price extends Mage_GoogleShopping_Mode
                 $effectiveDate = $this->getGroupAttributeSalePriceEffectiveDate();
                 if (!is_null($effectiveDate)) {
                     $effectiveDate->setGroupAttributeSalePriceEffectiveDateFrom(
-                            $this->getGroupAttributeSalePriceEffectiveDateFrom()
-                        )
+                        $this->getGroupAttributeSalePriceEffectiveDateFrom()
+                    )
                         ->setGroupAttributeSalePriceEffectiveDateTo($this->getGroupAttributeSalePriceEffectiveDateTo())
                         ->convertAttribute($product, $entry);
                 }
@@ -123,10 +124,11 @@ class Mage_GoogleShopping_Model_Attribute_Price extends Mage_GoogleShopping_Mode
      * Custom setter for 'price' attribute
      *
      * @param Varien_Gdata_Gshopping_Entry $entry
-     * @param string $attribute Google Content attribute name
-     * @param mixed $value Fload price value
-     * @param string $type Google Content attribute type
-     * @param string $name Google Content attribute name
+     * @param string                       $attribute Google Content attribute name
+     * @param mixed                        $value     Fload price value
+     * @param string                       $type      Google Content attribute type
+     * @param string                       $name      Google Content attribute name
+     *
      * @return Varien_Gdata_Gshopping_Entry
      */
     protected function _setAttributePrice($entry, $product, $targetCountry, $value, $name = 'price')

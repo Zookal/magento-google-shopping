@@ -78,9 +78,9 @@ class Varien_Gdata_Gshopping_Content extends Zend_Gdata
     /**
      * Create object
      *
-     * @param Zend_Http_Client $client (optional) The HTTP client to use when
-     *          when communicating with the Google Apps servers.
-     * @param string $applicationId The identity of the app in the form of Company-AppName-Version
+     * @param Zend_Http_Client $client        (optional) The HTTP client to use when
+     *                                        when communicating with the Google Apps servers.
+     * @param string           $applicationId The identity of the app in the form of Company-AppName-Version
      */
     public function __construct($client = null, $accountId = null, $applicationId = 'MyCompany-MyApp-1.0')
     {
@@ -95,6 +95,7 @@ class Varien_Gdata_Gshopping_Content extends Zend_Gdata
      * Retreive entry object
      *
      * @param mixed $location The location for the feed, as a URL or Query
+     *
      * @return Varien_Gdata_Gshopping_Entry
      */
     public function getItem($location = null)
@@ -110,12 +111,12 @@ class Varien_Gdata_Gshopping_Content extends Zend_Gdata
         return $entry;
     }
 
-
     /**
      * Insert an entry
      *
-     * @param Varien_Gdata_Gshopping_Entry $entry The Content entry to upload
-     * @param boolean $dryRun Flag for the 'dry-run' parameter
+     * @param Varien_Gdata_Gshopping_Entry $entry  The Content entry to upload
+     * @param boolean                      $dryRun Flag for the 'dry-run' parameter
+     *
      * @return Varien_Gdata_Gshopping_Entry
      */
     public function insertItem(Varien_Gdata_Gshopping_Entry $entry, $dryRun = false)
@@ -131,8 +132,9 @@ class Varien_Gdata_Gshopping_Content extends Zend_Gdata
     /**
      * Update an entry
      *
-     * @param Varien_Gdata_Gshopping_Entry $entry The Content entry to be updated
-     * @param boolean $dryRun Flag for the 'dry-run' parameter
+     * @param Varien_Gdata_Gshopping_Entry $entry  The Content entry to be updated
+     * @param boolean                      $dryRun Flag for the 'dry-run' parameter
+     *
      * @return Varien_Gdata_Gshopping_Entry
      */
     public function updateItem(Varien_Gdata_Gshopping_Entry $entry, $dryRun = false)
@@ -143,8 +145,9 @@ class Varien_Gdata_Gshopping_Content extends Zend_Gdata
     /**
      * Delete an entry
      *
-     * @param Varien_Gdata_Gshopping_Entry $entry The Content entry to remove
-     * @param boolean $dryRun Flag for the 'dry-run' parameter
+     * @param Varien_Gdata_Gshopping_Entry $entry  The Content entry to remove
+     * @param boolean                      $dryRun Flag for the 'dry-run' parameter
+     *
      * @return Varien_Gdata_Gshopping_Content Implements fluent interface
      */
     public function deleteItem(Varien_Gdata_Gshopping_Entry $entry, $dryRun = false)
@@ -172,6 +175,7 @@ class Varien_Gdata_Gshopping_Content extends Zend_Gdata
      * @param string $text
      * @param string $type
      * @param string $src
+     *
      * @return Zend_Gdata_App_Extension_Content
      */
     public function newContent($text = null, $type = 'text', $src = null)
@@ -192,31 +196,32 @@ class Varien_Gdata_Gshopping_Content extends Zend_Gdata
     /**
      * Performs a HTTP request using the specified method
      *
-     * @param string $method The HTTP method for the request - 'GET', 'POST',
-     *                       'PUT', 'DELETE'
-     * @param string $url The URL to which this request is being performed
-     * @param array $headers An associative array of HTTP headers
-     *                       for this request
-     * @param string $body The body of the HTTP request
-     * @param string $contentType The value for the content type
-     *                                of the request body
-     * @param int $remainingRedirects Number of redirects to follow if request
-     *                              s results in one
+     * @param string $method             The HTTP method for the request - 'GET', 'POST',
+     *                                   'PUT', 'DELETE'
+     * @param string $url                The URL to which this request is being performed
+     * @param array  $headers            An associative array of HTTP headers
+     *                                   for this request
+     * @param string $body               The body of the HTTP request
+     * @param string $contentType        The value for the content type
+     *                                   of the request body
+     * @param int    $remainingRedirects Number of redirects to follow if request
+     *                                   s results in one
+     *
      * @return Zend_Http_Response The response object
      */
     public function performHttpRequest($method, $url, $headers = null, $body = null, $contentType = null, $remainingRedirects = null)
     {
         try {
             $url .= '?warnings';
-            $debugData = array(
-                'method'                => $method,
-                'url'                   => $url,
-                'headers'               => $headers,
-                'body'                  => $body,
-                'content_type'          => $contentType,
-                'remaining_redirects'   => $remainingRedirects
+            $debugData             = array(
+                'method'              => $method,
+                'url'                 => $url,
+                'headers'             => $headers,
+                'body'                => $body,
+                'content_type'        => $contentType,
+                'remaining_redirects' => $remainingRedirects
             );
-            $result = parent::performHttpRequest($method, $url, $headers, $body, $contentType, $remainingRedirects);
+            $result                = parent::performHttpRequest($method, $url, $headers, $body, $contentType, $remainingRedirects);
             $debugData['response'] = $result;
             $this->debugData($debugData);
             return $result;
@@ -231,6 +236,7 @@ class Varien_Gdata_Gshopping_Content extends Zend_Gdata
      * Log debug data
      *
      * @param mixed $debugData
+     *
      * @return Varien_Gdata_Gshopping_Content
      */
     public function debugData($debugData)
@@ -246,6 +252,7 @@ class Varien_Gdata_Gshopping_Content extends Zend_Gdata
      * Set debug flag
      *
      * @param bool $flag
+     *
      * @return Varien_Gdata_Gshopping_Content
      */
     public function setDebug($flag)
@@ -259,12 +266,13 @@ class Varien_Gdata_Gshopping_Content extends Zend_Gdata
      *
      * @param object $instance
      * @param string $method
+     *
      * @return Varien_Gdata_Gshopping_Content
      */
     public function setLogAdapter($instance, $method)
     {
         if (method_exists($instance, $method)) {
-            $this->_logAdapter = $instance;
+            $this->_logAdapter          = $instance;
             $this->_logAdapterLogAction = $method;
         }
         return $this;

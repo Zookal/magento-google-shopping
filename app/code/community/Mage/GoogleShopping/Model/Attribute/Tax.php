@@ -37,11 +37,13 @@ class Mage_GoogleShopping_Model_Attribute_Tax extends Mage_GoogleShopping_Model_
      * Maximum number of tax rates per product supported by google shopping api
      */
     const RATES_MAX = 100;
+
     /**
      * Set current attribute to entry (for specified product)
      *
-     * @param Mage_Catalog_Model_Product $product
+     * @param Mage_Catalog_Model_Product   $product
      * @param Varien_Gdata_Gshopping_Entry $entry
+     *
      * @return Varien_Gdata_Gshopping_Entry
      */
     public function convertAttribute($product, $entry)
@@ -51,11 +53,11 @@ class Mage_GoogleShopping_Model_Attribute_Tax extends Mage_GoogleShopping_Model_
             return $entry;
         }
 
-        $calc = Mage::helper('tax')->getCalculator();
+        $calc             = Mage::helper('tax')->getCalculator();
         $customerTaxClass = $calc->getDefaultCustomerTaxClass($product->getStoreId());
-        $rates = $calc->getRatesByCustomerAndProductTaxClasses($customerTaxClass, $product->getTaxClassId());
-        $targetCountry = Mage::getSingleton('googleshopping/config')->getTargetCountry($product->getStoreId());
-        $ratesTotal = 0;
+        $rates            = $calc->getRatesByCustomerAndProductTaxClasses($customerTaxClass, $product->getTaxClassId());
+        $targetCountry    = Mage::getSingleton('googleshopping/config')->getTargetCountry($product->getStoreId());
+        $ratesTotal       = 0;
         foreach ($rates as $rate) {
             if ($targetCountry == $rate['country']) {
                 $regions = $this->_parseRegions($rate['state'], $rate['postcode']);
@@ -65,9 +67,9 @@ class Mage_GoogleShopping_Model_Attribute_Tax extends Mage_GoogleShopping_Model_
                 }
                 foreach ($regions as $region) {
                     $entry->addTax(array(
-                        'tax_rate' =>     $rate['value'] * 100,
-                        'tax_country' =>  empty($rate['country']) ? '*' : $rate['country'],
-                        'tax_region' =>   $region
+                        'tax_rate'    => $rate['value'] * 100,
+                        'tax_country' => empty($rate['country']) ? '*' : $rate['country'],
+                        'tax_region'  => $region
                     ));
                 }
             }
@@ -81,6 +83,7 @@ class Mage_GoogleShopping_Model_Attribute_Tax extends Mage_GoogleShopping_Model_
      *
      * @param string $state
      * @param string $zip
+     *
      * @return array
      */
     protected function _parseRegions($state, $zip)
@@ -92,6 +95,7 @@ class Mage_GoogleShopping_Model_Attribute_Tax extends Mage_GoogleShopping_Model_
      * Retrieve array of regions characterized by provided zip code
      *
      * @param string $zip
+     *
      * @return array
      */
     protected function _parseZip($zip)

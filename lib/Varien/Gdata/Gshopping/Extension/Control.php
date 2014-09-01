@@ -59,8 +59,8 @@ class Varien_Gdata_Gshopping_Extension_Control extends Zend_Gdata_App_Extension_
     /**
      * Create instance of class
      *
-     * @param array $destinations Map destination's names to mode (DEST_MODE_*)
-     * @param Zend_Gdata_App_Extension_Draft|null $draft Draft extension
+     * @param array                               $destinations Map destination's names to mode (DEST_MODE_*)
+     * @param Zend_Gdata_App_Extension_Draft|null $draft        Draft extension
      */
     public function __construct(array $destinations = array(), $draft = null)
     {
@@ -76,6 +76,7 @@ class Varien_Gdata_Gshopping_Extension_Control extends Zend_Gdata_App_Extension_
      * for application storage/persistence.
      *
      * @param DOMDocument $doc The DOMDocument used to construct DOMElements
+     *
      * @return DOMElement The DOMElement representing this element and all
      * child properties.
      */

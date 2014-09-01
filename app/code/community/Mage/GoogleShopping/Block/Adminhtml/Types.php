@@ -31,15 +31,14 @@
  * @package    Mage_GoogleShopping
  * @author     Magento Core Team <core@magentocommerce.com>
  */
-
 class Mage_GoogleShopping_Block_Adminhtml_Types extends Mage_Adminhtml_Block_Widget_Grid_Container
 {
     public function __construct()
     {
-        $this->_blockGroup = 'googleshopping';
-        $this->_controller = 'adminhtml_types';
+        $this->_blockGroup     = 'googleshopping';
+        $this->_controller     = 'adminhtml_types';
         $this->_addButtonLabel = Mage::helper('googleshopping')->__('Add Attribute Mapping');
-        $this->_headerText = Mage::helper('googleshopping')->__('Manage Attribute Mapping');
+        $this->_headerText     = Mage::helper('googleshopping')->__('Manage Attribute Mapping');
         parent::__construct();
     }
 }

@@ -31,7 +31,7 @@
  * @package    Mage_GoogleShopping
  * @name       Mage_GoogleShopping_Adminhtml_Googleshopping_ItemsController
  * @author     Magento Core Team <core@magentocommerce.com>
-*/
+ */
 class Mage_GoogleShopping_Adminhtml_Googleshopping_ItemsController extends Mage_Adminhtml_Controller_Action
 {
     /**
@@ -54,8 +54,8 @@ class Mage_GoogleShopping_Adminhtml_Googleshopping_ItemsController extends Mage_
     public function indexAction()
     {
         $this->_title($this->__('Catalog'))
-             ->_title($this->__('Google Content'))
-             ->_title($this->__('Manage Items'));
+            ->_title($this->__('Google Content'))
+            ->_title($this->__('Manage Items'));
 
         if (0 === (int)$this->getRequest()->getParam('store')) {
             $this->_redirect('*/*/', array('store' => Mage::app()->getAnyStoreView()->getId(), '_current' => true));
@@ -96,7 +96,7 @@ class Mage_GoogleShopping_Adminhtml_Googleshopping_ItemsController extends Mage_
                 ->createBlock('googleshopping/adminhtml_items_item')
                 ->setIndex($this->getRequest()->getParam('index'))
                 ->toHtml()
-           );
+        );
     }
 
     /**
@@ -123,9 +123,9 @@ class Mage_GoogleShopping_Adminhtml_Googleshopping_ItemsController extends Mage_
         ignore_user_abort(true);
         set_time_limit(0);
 
-        $storeId = $this->_getStore()->getId();
+        $storeId    = $this->_getStore()->getId();
         $productIds = $this->getRequest()->getParam('product', null);
-        $notifier = Mage::getModel('adminnotification/inbox');
+        $notifier   = Mage::getModel('adminnotification/inbox');
 
         try {
             $flag->lock();
@@ -245,7 +245,6 @@ class Mage_GoogleShopping_Adminhtml_Googleshopping_ItemsController extends Mage_
                 $this->getRequest()->getParam('user_confirm')
             );
             $this->_getSession()->addSuccess($this->__('Captcha has been confirmed.'));
-
         } catch (Zend_Gdata_App_CaptchaRequiredException $e) {
             $this->_getSession()->addError($this->__('Captcha confirmation error: %s', $e->getMessage()));
             $this->_redirectToCaptcha($e);
@@ -259,7 +258,7 @@ class Mage_GoogleShopping_Adminhtml_Googleshopping_ItemsController extends Mage_
             $this->_getSession()->addError($this->__('Captcha confirmation error.'));
         }
 
-        $this->_redirect('*/*/index', array('store'=>$storeId));
+        $this->_redirect('*/*/index', array('store' => $storeId));
     }
 
     /**
@@ -288,9 +287,9 @@ class Mage_GoogleShopping_Adminhtml_Googleshopping_ItemsController extends Mage_
         $redirectUrl = $this->getUrl(
             '*/*/index',
             array(
-                'store' => $this->_getStore()->getId(),
+                'store'         => $this->_getStore()->getId(),
                 'captcha_token' => Mage::helper('core')->urlEncode($e->getCaptchaToken()),
-                'captcha_url' => Mage::helper('core')->urlEncode($e->getCaptchaUrl())
+                'captcha_url'   => Mage::helper('core')->urlEncode($e->getCaptchaUrl())
             )
         );
         if ($this->getRequest()->isAjax()) {

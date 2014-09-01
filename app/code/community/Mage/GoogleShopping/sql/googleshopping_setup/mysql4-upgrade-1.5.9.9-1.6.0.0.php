@@ -73,108 +73,108 @@ $installer->getConnection()->dropIndex(
  * Change columns
  */
 $tables = array(
-    $installer->getTable('googleshopping/types') => array(
+    $installer->getTable('googleshopping/types')      => array(
         'columns' => array(
-            'type_id' => array(
-                'type'      => Varien_Db_Ddl_Table::TYPE_INTEGER,
-                'identity'  => true,
-                'unsigned'  => true,
-                'nullable'  => false,
-                'primary'   => true,
-                'comment'   => 'Type ID',
+            'type_id'          => array(
+                'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+                'identity' => true,
+                'unsigned' => true,
+                'nullable' => false,
+                'primary'  => true,
+                'comment'  => 'Type ID',
             ),
             'attribute_set_id' => array(
-                'type'      => Varien_Db_Ddl_Table::TYPE_SMALLINT,
-                'unsigned'  => true,
-                'nullable'  => false,
-                'comment'   => 'Attribute Set Id',
+                'type'     => Varien_Db_Ddl_Table::TYPE_SMALLINT,
+                'unsigned' => true,
+                'nullable' => false,
+                'comment'  => 'Attribute Set Id',
             ),
-            'target_country' => array(
-                'type'       => Varien_Db_Ddl_Table::TYPE_TEXT,
-                'length'     => 2,
-                'nullable'   => false,
-                'default'    => 'US',
-                'comment'    => 'Target country',
+            'target_country'   => array(
+                'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+                'length'   => 2,
+                'nullable' => false,
+                'default'  => 'US',
+                'comment'  => 'Target country',
             ),
         ),
         'comment' => 'Google Content Item Types link Attribute Sets'
     ),
-    $installer->getTable('googleshopping/items') => array(
+    $installer->getTable('googleshopping/items')      => array(
         'columns' => array(
-            'item_id' => array(
-                'type'      => Varien_Db_Ddl_Table::TYPE_INTEGER,
-                'identity'  => true,
-                'nullable'  => false,
-                'unsigned'  => true,
-                'primary'   => true,
-                'comment'   => 'Item Id',
+            'item_id'          => array(
+                'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+                'identity' => true,
+                'nullable' => false,
+                'unsigned' => true,
+                'primary'  => true,
+                'comment'  => 'Item Id',
             ),
-            'type_id' => array(
-                'type'      => Varien_Db_Ddl_Table::TYPE_INTEGER,
-                'nullable'  => false,
-                'unsigned'  => true,
-                'default'   => 0,
-                'comment'   => 'Type Id',
+            'type_id'          => array(
+                'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+                'nullable' => false,
+                'unsigned' => true,
+                'default'  => 0,
+                'comment'  => 'Type Id',
             ),
-            'product_id'    => array(
-                'type'      => Varien_Db_Ddl_Table::TYPE_INTEGER,
-                'nullable'  => false,
-                'unsigned'  => true,
-                'comment'   => 'Product Id',
+            'product_id'       => array(
+                'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+                'nullable' => false,
+                'unsigned' => true,
+                'comment'  => 'Product Id',
             ),
             'gcontent_item_id' => array(
-                'type'      => Varien_Db_Ddl_Table::TYPE_TEXT,
-                'length'    => 255,
-                'nullable'  => false,
-                'comment'   => 'Google Content Item Id',
+                'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+                'length'   => 255,
+                'nullable' => false,
+                'comment'  => 'Google Content Item Id',
             ),
-            'store_id' => array(
-                'type'      => Varien_Db_Ddl_Table::TYPE_SMALLINT,
-                'nullable'  => false,
-                'unsigned'  => true,
-                'comment'   => 'Store Id',
+            'store_id'         => array(
+                'type'     => Varien_Db_Ddl_Table::TYPE_SMALLINT,
+                'nullable' => false,
+                'unsigned' => true,
+                'comment'  => 'Store Id',
             ),
-            'published' => array(
-                'type'      => Varien_Db_Ddl_Table::TYPE_DATETIME,
-                'nullable'  => true,
-                'comment'   => 'Published date',
+            'published'        => array(
+                'type'     => Varien_Db_Ddl_Table::TYPE_DATETIME,
+                'nullable' => true,
+                'comment'  => 'Published date',
             ),
-            'expires' => array(
-                'type'      => Varien_Db_Ddl_Table::TYPE_DATETIME,
-                'nullable'  => true,
-                'comment'   => 'Expires date',
+            'expires'          => array(
+                'type'     => Varien_Db_Ddl_Table::TYPE_DATETIME,
+                'nullable' => true,
+                'comment'  => 'Expires date',
             ),
         ),
         'comment' => 'Google Content Items Products'
     ),
     $installer->getTable('googleshopping/attributes') => array(
         'columns' => array(
-            'id' => array(
-                'type'      => Varien_Db_Ddl_Table::TYPE_INTEGER,
-                'length'    => 10,
-                'identity'  => true,
-                'nullable'  => false,
-                'unsigned'  => true,
-                'primary'   => true,
-                'comment'   => 'Id',
+            'id'                 => array(
+                'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+                'length'   => 10,
+                'identity' => true,
+                'nullable' => false,
+                'unsigned' => true,
+                'primary'  => true,
+                'comment'  => 'Id',
             ),
-            'attribute_id'  => array(
-                'type'      => Varien_Db_Ddl_Table::TYPE_SMALLINT,
-                'nullable'  => false,
-                'unsigned'  => true,
-                'comment'   => 'Attribute Id',
+            'attribute_id'       => array(
+                'type'     => Varien_Db_Ddl_Table::TYPE_SMALLINT,
+                'nullable' => false,
+                'unsigned' => true,
+                'comment'  => 'Attribute Id',
             ),
             'gcontent_attribute' => array(
-                'type'      => Varien_Db_Ddl_Table::TYPE_TEXT,
-                'length'    => 255,
-                'nullable'  => false,
-                'comment'   => 'Google Content Attribute',
+                'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+                'length'   => 255,
+                'nullable' => false,
+                'comment'  => 'Google Content Attribute',
             ),
-            'type_id' => array(
-                'type'      => Varien_Db_Ddl_Table::TYPE_INTEGER,
-                'nullable'  => false,
-                'unsigned'  => true,
-                'comment'   => 'Type Id',
+            'type_id'            => array(
+                'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+                'nullable' => false,
+                'unsigned' => true,
+                'comment'  => 'Type Id',
             ),
         ),
         'comment' => 'Google Content Attributes link Product Attributes'

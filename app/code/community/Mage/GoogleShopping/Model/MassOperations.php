@@ -58,6 +58,7 @@ class Mage_GoogleShopping_Model_MassOperations
      * Set process locking flag.
      *
      * @param Mage_GoogleShopping_Model_Flag $flag
+     *
      * @return Mage_GoogleShopping_Model_MassOperations
      */
     public function setFlag(Mage_GoogleShopping_Model_Flag $flag)
@@ -70,7 +71,8 @@ class Mage_GoogleShopping_Model_MassOperations
      * Add product to Google Content.
      *
      * @param array $productIds
-     * @param int $storeId
+     * @param int   $storeId
+     *
      * @throws Zend_Gdata_App_CaptchaRequiredException
      * @throws Mage_Core_Exception
      * @return Mage_GoogleShopping_Model_MassOperations
@@ -78,7 +80,7 @@ class Mage_GoogleShopping_Model_MassOperations
     public function addProducts($productIds, $storeId)
     {
         $totalAdded = 0;
-        $errors = array();
+        $errors     = array();
         if (is_array($productIds)) {
             foreach ($productIds as $productId) {
                 if ($this->_flag && $this->_flag->isExpired()) {
@@ -146,6 +148,7 @@ class Mage_GoogleShopping_Model_MassOperations
      * Update Google Content items.
      *
      * @param array|Mage_GoogleShopping_Model_Resource_Item_Collection $items
+     *
      * @throws Zend_Gdata_App_CaptchaRequiredException
      * @throws Mage_Core_Exception
      * @return Mage_GoogleShopping_Model_MassOperations
@@ -154,8 +157,8 @@ class Mage_GoogleShopping_Model_MassOperations
     {
         $totalUpdated = 0;
         $totalDeleted = 0;
-        $totalFailed = 0;
-        $errors = array();
+        $totalFailed  = 0;
+        $errors       = array();
 
         $itemsCollection = $this->_getItemsCollection($items);
 
@@ -221,14 +224,15 @@ class Mage_GoogleShopping_Model_MassOperations
      * Remove Google Content items.
      *
      * @param array|Mage_GoogleShopping_Model_Resource_Item_Collection $items
+     *
      * @throws Zend_Gdata_App_CaptchaRequiredException
      * @return Mage_GoogleShopping_Model_MassOperations
      */
     public function deleteItems($items)
     {
-        $totalDeleted = 0;
+        $totalDeleted    = 0;
         $itemsCollection = $this->_getItemsCollection($items);
-        $errors = array();
+        $errors          = array();
         if ($itemsCollection) {
             if (count($itemsCollection) < 1) {
                 return $this;
@@ -276,6 +280,7 @@ class Mage_GoogleShopping_Model_MassOperations
      * Return items collection by IDs
      *
      * @param array|Mage_GoogleShopping_Model_Resource_Item_Collection $items
+     *
      * @throws Mage_Core_Exception
      * @return null|Mage_GoogleShopping_Model_Resource_Item_Collection
      */

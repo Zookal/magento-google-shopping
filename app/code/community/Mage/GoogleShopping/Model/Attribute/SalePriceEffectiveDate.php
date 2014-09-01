@@ -36,17 +36,18 @@ class Mage_GoogleShopping_Model_Attribute_SalePriceEffectiveDate extends Mage_Go
     /**
      * Set current attribute to entry (for specified product)
      *
-     * @param Mage_Catalog_Model_Product $product
+     * @param Mage_Catalog_Model_Product   $product
      * @param Varien_Gdata_Gshopping_Entry $entry
+     *
      * @return Varien_Gdata_Gshopping_Entry
      */
     public function convertAttribute($product, $entry)
     {
         $effectiveDateFrom = $this->getGroupAttributeSalePriceEffectiveDateFrom();
-        $fromValue = $effectiveDateFrom->getProductAttributeValue($product);
+        $fromValue         = $effectiveDateFrom->getProductAttributeValue($product);
 
         $effectiveDateTo = $this->getGroupAttributeSalePriceEffectiveDateTo();
-        $toValue = $effectiveDateTo->getProductAttributeValue($product);
+        $toValue         = $effectiveDateTo->getProductAttributeValue($product);
 
         $from = $to = null;
         if (!empty($fromValue) && Zend_Date::isDate($fromValue, Zend_Date::ATOM)) {

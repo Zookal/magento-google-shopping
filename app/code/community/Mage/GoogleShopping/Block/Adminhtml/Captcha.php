@@ -24,7 +24,6 @@
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-
 /**
  * Adminhtml Google Content Captcha challenge
  *
@@ -50,12 +49,12 @@ class Mage_GoogleShopping_Block_Adminhtml_Captcha extends Mage_Adminhtml_Block_T
     {
         $confirmButton = $this->getLayout()->createBlock('adminhtml/widget_button')
             ->setData(array(
-                'label'     => $this->__('Confirm'),
-                'onclick'   => "if($('user_confirm').value != '')
+                'label'   => $this->__('Confirm'),
+                'onclick' => "if($('user_confirm').value != '')
                                 {
-                                    setLocation('".$this->getUrl('*/*/confirmCaptcha', array('_current'=>true))."' + 'user_confirm/' + $('user_confirm').value + '/');
+                                    setLocation('" . $this->getUrl('*/*/confirmCaptcha', array('_current' => true)) . "' + 'user_confirm/' + $('user_confirm').value + '/');
                                 }",
-                'class'     => 'task'
+                'class'   => 'task'
             ));
         return $confirmButton->toHtml();
     }

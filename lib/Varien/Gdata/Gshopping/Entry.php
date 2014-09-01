@@ -56,6 +56,7 @@ class Varien_Gdata_Gshopping_Entry extends Zend_Gdata_Entry
 
     /**
      * Constructs a new Varien_Gdata_Gshopping_Entry object.
+     *
      * @param DOMElement $element The DOMElement on which to base this object.
      */
     public function __construct($element = null)
@@ -70,6 +71,7 @@ class Varien_Gdata_Gshopping_Entry extends Zend_Gdata_Entry
      * and eventually XML text for application storage/persistence.
      *
      * @param DOMDocument $doc The DOMDocument used to construct DOMElements
+     *
      * @return DOMElement The DOMElement representing this element and all
      *          child properties.
      */
@@ -88,7 +90,6 @@ class Varien_Gdata_Gshopping_Entry extends Zend_Gdata_Entry
         return $element;
     }
 
-
     /**
      * Creates individual Entry objects of the appropriate type and
      * stores them as members of this entry based upon DOM data.
@@ -97,9 +98,9 @@ class Varien_Gdata_Gshopping_Entry extends Zend_Gdata_Entry
      */
     protected function takeChildFromDOM($child)
     {
-        $sc = $this->lookupNamespace('sc');
+        $sc  = $this->lookupNamespace('sc');
         $scp = $this->lookupNamespace('scp');
-        $id = $child->namespaceURI . ':' . $child->localName;
+        $id  = $child->namespaceURI . ':' . $child->localName;
         if ($child->localName == 'group') {
             $id .= ':' . $child->getAttribute('name');
         }
@@ -141,11 +142,12 @@ class Varien_Gdata_Gshopping_Entry extends Zend_Gdata_Entry
      *     attribute_value
      * </sc:attribute>
      *
-     * @param string $name The name of the attribute
+     * @param string $name  The name of the attribute
      * @param string $value The text value of the attribute
-     * @param string $type (optional) The type of the attribute.
-     *          e.g.: 'text', 'number', 'float'
-     * @param string $unit Currecnty for price
+     * @param string $type  (optional) The type of the attribute.
+     *                      e.g.: 'text', 'number', 'float'
+     * @param string $unit  Currecnty for price
+     *
      * @return Varien_Gdata_Gshopping_Entry Provides a fluent interface
      */
     public function addContentAttribute($name, $text, $type = null, $unit = null)
@@ -158,6 +160,7 @@ class Varien_Gdata_Gshopping_Entry extends Zend_Gdata_Entry
      * Removes a Content attribute from the current list of Base attributes
      *
      * @param Zend_Gdata_Gbase_Extension_BaseAttribute $baseAttribute The attribute to be removed
+     *
      * @return Zend_Gdata_Gbase_Entry Provides a fluent interface
      */
     public function removeContentAttribute($name)
@@ -174,14 +177,15 @@ class Varien_Gdata_Gshopping_Entry extends Zend_Gdata_Entry
     /**
      * Uploads changes in this entry to the server using Zend_Gdata_App
      *
-     * @param boolean $dryRun Whether the transaction is dry run or not.
-     * @param string|null $uri The URI to send requests to, or null if $data
-     *        contains the URI.
-     * @param string|null $className The name of the class that should we
-     *        deserializing the server response. If null, then
-     *        'Zend_Gdata_App_Entry' will be used.
-     * @param array $extraHeaders Extra headers to add to the request, as an
-     *        array of string-based key/value pairs.
+     * @param boolean     $dryRun       Whether the transaction is dry run or not.
+     * @param string|null $uri          The URI to send requests to, or null if $data
+     *                                  contains the URI.
+     * @param string|null $className    The name of the class that should we
+     *                                  deserializing the server response. If null, then
+     *                                  'Zend_Gdata_App_Entry' will be used.
+     * @param array       $extraHeaders Extra headers to add to the request, as an
+     *                                  array of string-based key/value pairs.
+     *
      * @return Zend_Gdata_App_Entry The updated entry
      * @throws Zend_Gdata_App_Exception
      */
@@ -205,13 +209,14 @@ class Varien_Gdata_Gshopping_Entry extends Zend_Gdata_Entry
      * entry's link collection.
      *
      * @param boolean $dryRun Whether the transaction is dry run or not
+     *
      * @return void
      * @throws Zend_Gdata_App_Exception
      */
     public function delete($dryRun = false)
     {
         if ($dryRun) {
-            $uri = null;
+            $uri      = null;
             $editLink = $this->getEditLink();
             if ($editLink !== null) {
                 $uri = $editLink->getHref() . '?dry-run=true';
@@ -238,6 +243,7 @@ class Varien_Gdata_Gshopping_Entry extends Zend_Gdata_Entry
      * Return an array of Content attributes that match the given attribute name
      *
      * @param string $name The name of the Content attribute to look for
+     *
      * @return array $matches Array of Varien_Gdata_Gshopping_Extension_Attribute
      */
     public function getContentAttributesByName($name)
@@ -257,6 +263,7 @@ class Varien_Gdata_Gshopping_Entry extends Zend_Gdata_Entry
      * return null otherwise
      *
      * @param string $name The name of the Content attribute to look for
+     *
      * @return null|Varien_Gdata_Gshopping_Extension_Attribute
      */
     public function getContentAttributeByName($name)
@@ -274,8 +281,9 @@ class Varien_Gdata_Gshopping_Entry extends Zend_Gdata_Entry
      * Set destinations for entry
      *
      * @param  array $modes Array with destination names and their statuses.
-     *            format: array(name => Varien_Gdata_Gshopping_Extension_Control::DEST_MODE_*),
-     *            for instance: array('ProductSearch' => 2)
+     *                      format: array(name => Varien_Gdata_Gshopping_Extension_Control::DEST_MODE_*),
+     *                      for instance: array('ProductSearch' => 2)
+     *
      * @return Varien_Gdata_Gshopping_Entry
      */
     public function setDestinationsMode(array $modes)
@@ -301,7 +309,7 @@ class Varien_Gdata_Gshopping_Entry extends Zend_Gdata_Entry
      * Add tax information to entry.
      *
      * @param array $taxInfo Array with tax's information,
-     *           it may contains fields: tax_rate, tax_country, tax_region.
+     *                       it may contains fields: tax_rate, tax_country, tax_region.
      */
     public function addTax(array $taxInfo)
     {
@@ -336,6 +344,7 @@ class Varien_Gdata_Gshopping_Entry extends Zend_Gdata_Entry
      * For instance: Meta Description = meta_description
      *
      * @param string $name
+     *
      * @return string
      */
     protected function _normalizeName($name)

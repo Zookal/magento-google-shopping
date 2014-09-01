@@ -38,15 +38,16 @@ class Mage_GoogleShopping_Model_Attribute_Condition extends Mage_GoogleShopping_
      *
      * @var string
      */
-    const CONDITION_NEW = 'new';
-    const CONDITION_USED = 'used';
+    const CONDITION_NEW         = 'new';
+    const CONDITION_USED        = 'used';
     const CONDITION_REFURBISHED = 'refurbished';
 
     /**
      * Set current attribute to entry (for specified product)
      *
-     * @param Mage_Catalog_Model_Product $product
+     * @param Mage_Catalog_Model_Product   $product
      * @param Varien_Gdata_Gshopping_Entry $entry
+     *
      * @return Varien_Gdata_Gshopping_Entry
      */
     public function convertAttribute($product, $entry)

@@ -69,8 +69,8 @@ class Mage_GoogleShopping_Helper_Category
         return sprintf(
             Mage::helper('googleshopping')->__("For information on Google's required attributes for different product categories, please see this link: %s"),
             '<a href="http://www.google.com/support/merchants/bin/answer.py?answer=1344057" target="_blank">'
-                . 'http://www.google.com/support/merchants/bin/answer.py?answer=1344057'
-                . '</a>'
+            . 'http://www.google.com/support/merchants/bin/answer.py?answer=1344057'
+            . '</a>'
         );
     }
 }

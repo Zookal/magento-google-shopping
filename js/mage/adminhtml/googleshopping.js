@@ -34,15 +34,15 @@ if (typeof Mage.GoogleShopping == 'undefined') {
             timeout: 10000,
             interval: null,
 
-            start: function(url) {
+            start: function (url) {
                 this.interval = setInterval(this.request.bind(this, url), this.timeout)
             },
 
-            stop: function() {
+            stop: function () {
                 clearInterval(this.interval);
             },
 
-            request: function(url) {
+            request: function (url) {
                 Ajax.Responders.unregister(varienLoaderHandler.handler);
                 new Ajax.Request(url, {
                     method: 'get',
@@ -52,7 +52,7 @@ if (typeof Mage.GoogleShopping == 'undefined') {
                 })
             },
 
-            onSuccess: function(isFinished) {
+            onSuccess: function (isFinished) {
 
             }
         },
@@ -68,7 +68,7 @@ if (typeof Mage.GoogleShopping == 'undefined') {
             });
         },
 
-        onSuccess: function(form, response) {
+        onSuccess: function (form, response) {
             if (response.responseJSON && typeof response.responseJSON.redirect != 'undefined') {
                 setLocation(response.responseJSON.redirect);
             } else {
@@ -76,11 +76,11 @@ if (typeof Mage.GoogleShopping == 'undefined') {
             }
         },
 
-        onFailure: function() {
+        onFailure: function () {
             window.location.reload();
         },
 
-        lock: function() {
+        lock: function () {
             if (this.itemForm) {
                 this.lockButton($(this.itemForm).down('button'));
             }
@@ -90,7 +90,7 @@ if (typeof Mage.GoogleShopping == 'undefined') {
             this.addMessage();
         },
 
-        addMessage: function() {
+        addMessage: function () {
             var messageBox = $('messages');
             var messageList = $(messageBox).down('ul.messages');
             if (!messageList) {
@@ -109,26 +109,34 @@ if (typeof Mage.GoogleShopping == 'undefined') {
 }
 
 
-Event.observe(document, 'dom:loaded', function() {
+Event.observe(document, 'dom:loaded', function () {
     Mage.GoogleShopping.itemForm = items_massactionJsObject.form;
     items_massactionJsObject.prepareForm = items_massactionJsObject.prepareForm.wrap(function (proceed) {
         Mage.GoogleShopping.itemForm = proceed();
-        Mage.GoogleShopping.itemForm.submit = function(){ Mage.GoogleShopping.startAction(this); };
+        Mage.GoogleShopping.itemForm.submit = function () {
+            Mage.GoogleShopping.startAction(this);
+        };
         return Mage.GoogleShopping.itemForm;
     });
 
     Mage.GoogleShopping.productForm = googleshopping_selection_search_grid__massactionJsObject.form;
     googleshopping_selection_search_grid__massactionJsObject.prepareForm = googleshopping_selection_search_grid__massactionJsObject.prepareForm.wrap(function (proceed) {
         Mage.GoogleShopping.productForm = proceed();
-        Mage.GoogleShopping.productForm.submit = function() { Mage.GoogleShopping.startAction(this) };
+        Mage.GoogleShopping.productForm.submit = function () {
+            Mage.GoogleShopping.startAction(this)
+        };
         return Mage.GoogleShopping.productForm;
     });
 
-    Mage.GoogleShopping.itemForm.submit = function(){ Mage.GoogleShopping.startAction(this); };
-    Mage.GoogleShopping.productForm.submit = function() { Mage.GoogleShopping.startAction(this) };
+    Mage.GoogleShopping.itemForm.submit = function () {
+        Mage.GoogleShopping.startAction(this);
+    };
+    Mage.GoogleShopping.productForm.submit = function () {
+        Mage.GoogleShopping.startAction(this)
+    };
     if (Mage.GoogleShopping.isProcessRunning) {
         Mage.GoogleShopping.lock();
-        Mage.GoogleShopping.poller.onSuccess = function(isRunning){
+        Mage.GoogleShopping.poller.onSuccess = function (isRunning) {
             if (!isRunning) {
                 this.stop()
                 Mage.GoogleShopping.onSuccess();

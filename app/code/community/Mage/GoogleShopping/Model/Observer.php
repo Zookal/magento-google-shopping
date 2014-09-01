@@ -37,12 +37,13 @@ class Mage_GoogleShopping_Model_Observer
      * Update product item in Google Content
      *
      * @param Varien_Object $observer
+     *
      * @return Mage_GoogleShopping_Model_Observer
      */
     public function saveProductItem($observer)
     {
         $product = $observer->getEvent()->getProduct();
-        $items = $this->_getItemsCollection($product);
+        $items   = $this->_getItemsCollection($product);
 
         try {
             Mage::getModel('googleshopping/massOperations')
@@ -59,12 +60,13 @@ class Mage_GoogleShopping_Model_Observer
      * Delete product item from Google Content
      *
      * @param Varien_Object $observer
+     *
      * @return Mage_GoogleShopping_Model_Observer
      */
     public function deleteProductItem($observer)
     {
         $product = $observer->getEvent()->getProduct();
-        $items = $this->_getItemsCollection($product);
+        $items   = $this->_getItemsCollection($product);
 
         try {
             Mage::getModel('googleshopping/massOperations')
@@ -81,6 +83,7 @@ class Mage_GoogleShopping_Model_Observer
      * Get items which are available for update/delete when product is saved
      *
      * @param Mage_Catalog_Model_Product $product
+     *
      * @return Mage_GoogleShopping_Model_Mysql4_Item_Collection
      */
     protected function _getItemsCollection($product)
@@ -104,6 +107,7 @@ class Mage_GoogleShopping_Model_Observer
      * Check if synchronize process is finished and generate notification message
      *
      * @param  Varien_Event_Observer $observer
+     *
      * @return Mage_GoogleShopping_Model_Observer
      */
     public function checkSynchronizationOperations(Varien_Event_Observer $observer)

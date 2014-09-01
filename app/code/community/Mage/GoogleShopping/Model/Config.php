@@ -43,14 +43,15 @@ class Mage_GoogleShopping_Model_Config extends Varien_Object
     /**
      *  Return config var
      *
-     *  @param    string $key Var path key
-     *  @param    int $storeId Store View Id
-     *  @return   mixed
+     * @param    string $key     Var path key
+     * @param    int    $storeId Store View Id
+     *
+     * @return   mixed
      */
     public function getConfigData($key, $storeId = null)
     {
         if (!isset($this->_config[$key][$storeId])) {
-            $value = Mage::getStoreConfig('google/googleshopping/' . $key, $storeId);
+            $value                         = Mage::getStoreConfig('google/googleshopping/' . $key, $storeId);
             $this->_config[$key][$storeId] = $value;
         }
         return $this->_config[$key][$storeId];
@@ -60,6 +61,7 @@ class Mage_GoogleShopping_Model_Config extends Varien_Object
      * Google Account ID
      *
      * @param int $storeId
+     *
      * @return string
      */
     public function getAccountId($storeId = null)
@@ -71,6 +73,7 @@ class Mage_GoogleShopping_Model_Config extends Varien_Object
      * Google Account login
      *
      * @param int $storeId
+     *
      * @return string
      */
     public function getAccountLogin($storeId = null)
@@ -82,6 +85,7 @@ class Mage_GoogleShopping_Model_Config extends Varien_Object
      * Google Account password
      *
      * @param int $storeId
+     *
      * @return string
      */
     public function getAccountPassword($storeId = null)
@@ -93,6 +97,7 @@ class Mage_GoogleShopping_Model_Config extends Varien_Object
      * Google Account type
      *
      * @param int $storeId
+     *
      * @return string
      */
     public function getAccountType($storeId = null)
@@ -104,6 +109,7 @@ class Mage_GoogleShopping_Model_Config extends Varien_Object
      * Google Account target country info
      *
      * @param int $storeId
+     *
      * @return array
      */
     public function getTargetCountryInfo($storeId = null)
@@ -115,6 +121,7 @@ class Mage_GoogleShopping_Model_Config extends Varien_Object
      * Google Account target country
      *
      * @param int $storeId
+     *
      * @return string Two-letters country ISO code
      */
     public function getTargetCountry($storeId = null)
@@ -126,6 +133,7 @@ class Mage_GoogleShopping_Model_Config extends Varien_Object
      * Google Account target currency (for target country)
      *
      * @param int $storeId
+     *
      * @return string Three-letters currency ISO code
      */
     public function getTargetCurrency($storeId = null)
@@ -138,11 +146,12 @@ class Mage_GoogleShopping_Model_Config extends Varien_Object
      * Google Content destinations info
      *
      * @param int $storeId
+     *
      * @return array
      */
     public function getDestinationsInfo($storeId = null)
     {
-        $destinations = $this->getConfigData('destinations', $storeId);
+        $destinations     = $this->getConfigData('destinations', $storeId);
         $destinationsInfo = array();
         foreach ($destinations as $key => $name) {
             $destinationsInfo[$name] = $this->getConfigData($key, $storeId);
@@ -155,6 +164,7 @@ class Mage_GoogleShopping_Model_Config extends Varien_Object
      * Check whether System Base currency equals Google Content target currency or not
      *
      * @param int $storeId
+     *
      * @return boolean
      */
     public function isValidDefaultCurrencyCode($storeId = null)
@@ -166,6 +176,7 @@ class Mage_GoogleShopping_Model_Config extends Varien_Object
      * Google Content supported countries
      *
      * @param int $storeId
+     *
      * @return array
      */
     public function getAllowedCountries($storeId = null)
@@ -176,16 +187,17 @@ class Mage_GoogleShopping_Model_Config extends Varien_Object
     /**
      * Country info such as name, locale, language etc.
      *
-     * @param string $iso two-letters country ISO code
+     * @param string $iso   two-letters country ISO code
      * @param string $field If specified, return value for field
-     * @param int $storeId
+     * @param int    $storeId
+     *
      * @return array|string
      */
     public function getCountryInfo($iso, $field = null, $storeId = null)
     {
         $countries = $this->getAllowedCountries($storeId);
-        $country = isset($countries[$iso]) ? $countries[$iso] : null;
-        $data = isset($country[$field]) ? $country[$field] : null;
+        $country   = isset($countries[$iso]) ? $countries[$iso] : null;
+        $data      = isset($country[$field]) ? $country[$field] : null;
         return is_null($field) ? $country : $data;
     }
 
@@ -193,6 +205,7 @@ class Mage_GoogleShopping_Model_Config extends Varien_Object
      * Returns attributes by ISO country code (grouped by destination)
      *
      * @param string $isoCountryCode
+     *
      * @return array
      */
     public function getAttributesByCountry($isoCountryCode)
@@ -227,7 +240,7 @@ class Mage_GoogleShopping_Model_Config extends Varien_Object
      */
     public function getAttributeGroupsFlat()
     {
-        $groups = $this->getConfigData('attribute_groups');
+        $groups    = $this->getConfigData('attribute_groups');
         $groupFlat = array();
         foreach ($groups as $group => $subAttributes) {
             foreach ($subAttributes as $subAttribute => $value) {
@@ -251,6 +264,7 @@ class Mage_GoogleShopping_Model_Config extends Varien_Object
      * Check whether debug mode is enabled
      *
      * @param int $storeId
+     *
      * @return bool
      */
     public function getIsDebug($storeId)

@@ -24,7 +24,6 @@
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-
 /**
  * Adminhtml Google Shopping Item Id Renderer
  *
@@ -39,17 +38,18 @@ class Mage_GoogleShopping_Block_Adminhtml_Items_Renderer_Id
      * Renders Google Shopping Item Id
      *
      * @param   Varien_Object $row
+     *
      * @return  string
      */
     public function render(Varien_Object $row)
     {
         $baseUrl = 'http://www.google.com/merchants/view?docId=';
 
-        $itemUrl = $row->getData($this->getColumn()->getIndex());
+        $itemUrl  = $row->getData($this->getColumn()->getIndex());
         $urlParts = parse_url($itemUrl);
         if (isset($urlParts['path'])) {
             $pathParts = explode('/', $urlParts['path']);
-            $itemId = $pathParts[count($pathParts) - 1];
+            $itemId    = $pathParts[count($pathParts) - 1];
         } else {
             $itemId = $itemUrl;
         }

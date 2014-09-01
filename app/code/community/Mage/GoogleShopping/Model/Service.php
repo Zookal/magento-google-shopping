@@ -43,9 +43,10 @@ class Mage_GoogleShopping_Model_Service extends Varien_Object
     /**
      * Retutn Google Content Client Instance
      *
-     * @param int $storeId
+     * @param int    $storeId
      * @param string $loginToken
      * @param string $loginCaptcha
+     *
      * @return Zend_Http_Client
      */
     public function getClient($storeId = null, $loginToken = null, $loginCaptcha = null)
@@ -58,7 +59,7 @@ class Mage_GoogleShopping_Model_Service extends Varien_Object
         $errorMsg = Mage::helper('googleshopping')->__('Unable to connect to Google Content. Please, check Account settings in configuration.');
         try {
             if (!Mage::registry($this->_clientRegistryId)) {
-                $client = Zend_Gdata_ClientLogin::getHttpClient($user, $pass,
+                $client        = Zend_Gdata_ClientLogin::getHttpClient($user, $pass,
                     Varien_Gdata_Gshopping_Content::AUTH_SERVICE_NAME, null, '', $loginToken, $loginCaptcha,
                     Zend_Gdata_ClientLogin::CLIENTLOGIN_URI, $type
                 );
@@ -81,6 +82,7 @@ class Mage_GoogleShopping_Model_Service extends Varien_Object
      * Set Google Content Client Instance
      *
      * @param Zend_Http_Client $client
+     *
      * @return Mage_GoogleShopping_Model_Service
      */
     public function setClient($client)
@@ -94,6 +96,7 @@ class Mage_GoogleShopping_Model_Service extends Varien_Object
      * Return Google Content Service Instance
      *
      * @param int $storeId
+     *
      * @return Varien_Gdata_Gshopping_Content
      */
     public function getService($storeId = null)
@@ -114,6 +117,7 @@ class Mage_GoogleShopping_Model_Service extends Varien_Object
      * Set Google Content Service Instance
      *
      * @param Varien_Gdata_Gshopping_Content $service
+     *
      * @return Mage_GoogleShopping_Model_Service
      */
     public function setService($service)
@@ -136,13 +140,14 @@ class Mage_GoogleShopping_Model_Service extends Varien_Object
      * Authorize Google Account
      *
      * @param int $storeId
+     *
      * @return Varien_Gdata_Gshopping_Content service
      */
     protected function _connect($storeId = null)
     {
         $accountId = $this->getConfig()->getAccountId($storeId);
-        $client = $this->getClient($storeId);
-        $service = new Varien_Gdata_Gshopping_Content($client, $accountId);
+        $client    = $this->getClient($storeId);
+        $service   = new Varien_Gdata_Gshopping_Content($client, $accountId);
         return $service;
     }
 }

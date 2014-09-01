@@ -37,6 +37,7 @@ class Mage_GoogleShopping_Model_Service_Item extends Mage_GoogleShopping_Model_S
      * Return Store level Service Instance
      *
      * @param int $storeId
+     *
      * @return Varien_Gdata_Gshopping_Content
      */
     public function getService($storeId = null)
@@ -51,16 +52,17 @@ class Mage_GoogleShopping_Model_Service_Item extends Mage_GoogleShopping_Model_S
      * Insert Item into Google Content
      *
      * @param Mage_GoogleShopping_Model_Item $item
+     *
      * @return Mage_GoogleShopping_Model_Service_Item
      */
     public function insert($item)
     {
         $service = $this->getService();
-        $entry = $service->newEntry();
+        $entry   = $service->newEntry();
         $item->getType()
             ->convertProductToEntry($item->getProduct(), $entry);
 
-        $entry = $service->insertItem($entry);
+        $entry     = $service->insertItem($entry);
         $published = $this->convertContentDateToTimestamp($entry->getPublished()->getText());
 
         $item->setGcontentItemId($entry->getId())
@@ -78,13 +80,14 @@ class Mage_GoogleShopping_Model_Service_Item extends Mage_GoogleShopping_Model_S
      * Update Item data in Google Content
      *
      * @param Mage_GoogleShopping_Model_Item $item
+     *
      * @return Mage_GoogleShopping_Model_Service_Item
      */
     public function update($item)
     {
         $service = $this->getService();
-        $query = $this->_buildItemQuery($item);
-        $entry = $service->getItem($query);
+        $query   = $this->_buildItemQuery($item);
+        $entry   = $service->getItem($query);
 
         $stats = $this->_getEntryStats($entry);
         if (isset($stats['expires'])) {
@@ -100,12 +103,13 @@ class Mage_GoogleShopping_Model_Service_Item extends Mage_GoogleShopping_Model_S
      * Delete Item from Google Content
      *
      * @param Mage_GoogleShopping_Model_Item $item
+     *
      * @return Mage_GoogleShopping_Model_Service_Item
      */
     public function delete($item)
     {
         $service = $this->getService();
-        $query = $this->_buildItemQuery($item);
+        $query   = $this->_buildItemQuery($item);
         $service->delete($query->getQueryUrl());
 
         return $this;
@@ -116,6 +120,7 @@ class Mage_GoogleShopping_Model_Service_Item extends Mage_GoogleShopping_Model_S
      * Ex. 2008-12-08T16:57:23Z -> 2008-12-08 16:57:23
      *
      * @param string Google Content datetime
+     *
      * @return int
      */
     public function convertContentDateToTimestamp($gContentDate)
@@ -127,7 +132,8 @@ class Mage_GoogleShopping_Model_Service_Item extends Mage_GoogleShopping_Model_S
      * Return Google Content Item Attribute Value
      *
      * @param Varien_Gdata_Gshopping_Entry $entry
-     * @param string $name Google Content attribute name
+     * @param string                       $name Google Content attribute name
+     *
      * @return string|null Attribute value
      */
     protected function _getAttributeValue($entry, $name)
@@ -142,6 +148,7 @@ class Mage_GoogleShopping_Model_Service_Item extends Mage_GoogleShopping_Model_S
      * Retrieve item query for Google Content
      *
      * @param Mage_GoogleShopping_Model_Item $item
+     *
      * @return Varien_Gdata_Gshopping_ItemQuery
      */
     protected function _buildItemQuery($item)
@@ -150,7 +157,7 @@ class Mage_GoogleShopping_Model_Service_Item extends Mage_GoogleShopping_Model_S
         $service = $this->getService($storeId);
 
         $countryInfo = $this->getConfig()->getTargetCountryInfo($storeId);
-        $itemId = Mage::helper('googleshopping')->buildContentProductId($item->getProductId(), $item->getStoreId());
+        $itemId      = Mage::helper('googleshopping')->buildContentProductId($item->getProductId(), $item->getStoreId());
 
         $query = $service->newItemQuery()
             ->setId($itemId)
@@ -164,11 +171,12 @@ class Mage_GoogleShopping_Model_Service_Item extends Mage_GoogleShopping_Model_S
      * Return item stats array based on Zend Gdata Entry object
      *
      * @param Varien_Gdata_Gshopping_Entry $entry
+     *
      * @return array
      */
     protected function _getEntryStats($entry)
     {
-        $result = array();
+        $result         = array();
         $expirationDate = $entry->getContentAttributeByName('expiration_date');
         if ($expirationDate instanceof Varien_Gdata_Gshopping_Extension_Attribute) {
             $result['expires'] = $this->convertContentDateToTimestamp($expirationDate->text);

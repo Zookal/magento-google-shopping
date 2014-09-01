@@ -36,15 +36,16 @@ class Mage_GoogleShopping_Model_Attribute_GoogleProductCategory extends Mage_Goo
     /**
      * Set current attribute to entry (for specified product)
      *
-     * @param Mage_Catalog_Model_Product $product
+     * @param Mage_Catalog_Model_Product   $product
      * @param Varien_Gdata_Gshopping_Entry $entry
+     *
      * @return Varien_Gdata_Gshopping_Entry
      */
     public function convertAttribute($product, $entry)
     {
         $targetCountry = Mage::getSingleton('googleshopping/config')
             ->getTargetCountry($product->getStoreId());
-        $value = Mage::getModel('googleshopping/type')
+        $value         = Mage::getModel('googleshopping/type')
             ->loadByAttributeSetId($product->getAttributeSetId(), $targetCountry);
 
         $val = ($value->getCategory() == Mage_GoogleShopping_Helper_Category::CATEGORY_OTHER)

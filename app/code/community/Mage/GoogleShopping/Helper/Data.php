@@ -39,6 +39,7 @@ class Mage_GoogleShopping_Helper_Data extends Mage_Core_Helper_Abstract
      *
      * @param int $productId
      * @param int $storeId
+     *
      * @return string
      */
     public function buildContentProductId($productId, $storeId)
@@ -53,6 +54,7 @@ class Mage_GoogleShopping_Helper_Data extends Mage_Core_Helper_Abstract
      * Reason: There is a problem with the character encoding of this attribute")
      *
      * @param string $string
+     *
      * @return string
      */
     public function cleanAtomAttribute($string)
@@ -67,6 +69,7 @@ class Mage_GoogleShopping_Helper_Data extends Mage_Core_Helper_Abstract
      * For instance: Meta Description = meta_description
      *
      * @param string $name
+     *
      * @return string
      */
     public function normalizeName($name)
@@ -77,8 +80,9 @@ class Mage_GoogleShopping_Helper_Data extends Mage_Core_Helper_Abstract
     /**
      * Parse Exception Response Body
      *
-     * @param string $message Exception message to parse
+     * @param string                          $message Exception message to parse
      * @param null|Mage_Catalog_Model_Product $product
+     *
      * @return string
      */
     public function parseGdataExceptionMessage($message, $product = null)

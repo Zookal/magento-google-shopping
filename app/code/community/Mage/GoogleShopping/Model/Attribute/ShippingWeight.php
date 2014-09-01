@@ -43,15 +43,16 @@ class Mage_GoogleShopping_Model_Attribute_ShippingWeight extends Mage_GoogleShop
     /**
      * Set current attribute to entry (for specified product)
      *
-     * @param Mage_Catalog_Model_Product $product
+     * @param Mage_Catalog_Model_Product   $product
      * @param Varien_Gdata_Gshopping_Entry $entry
+     *
      * @return Varien_Gdata_Gshopping_Entry
      */
     public function convertAttribute($product, $entry)
     {
         $mapValue = $this->getProductAttributeValue($product);
         if (!$mapValue) {
-            $weight = $this->getGroupAttributeWeight();
+            $weight   = $this->getGroupAttributeWeight();
             $mapValue = $weight ? $weight->getProductAttributeValue($product) : null;
         }
 

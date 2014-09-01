@@ -71,6 +71,7 @@ class Mage_GoogleShopping_Model_Item extends Mage_Core_Model_Abstract
      * Set Service Item Instance
      *
      * @param Mage_GoogleShopping_Model_Service_Item $service
+     *
      * @return Mage_GoogleShopping_Model_Item
      */
     public function setServiceItem($service)
@@ -93,6 +94,7 @@ class Mage_GoogleShopping_Model_Item extends Mage_Core_Model_Abstract
      * Save item to Google Content
      *
      * @param Mage_Catalog_Model_Product $product
+     *
      * @return Mage_GoogleShopping_Model_Item
      */
     public function insertItem(Mage_Catalog_Model_Product $product)
@@ -134,6 +136,7 @@ class Mage_GoogleShopping_Model_Item extends Mage_Core_Model_Abstract
      * Load Item Model by Product
      *
      * @param Mage_Catalog_Model_Product $product
+     *
      * @return Mage_GoogleShopping_Model_Item
      */
     public function loadByProduct($product)
@@ -151,7 +154,7 @@ class Mage_GoogleShopping_Model_Item extends Mage_Core_Model_Abstract
     public function getType()
     {
         $attributeSetId = $this->getProduct()->getAttributeSetId();
-        $targetCountry = $this->getTargetCountry();
+        $targetCountry  = $this->getTargetCountry();
 
         $registry = Mage::registry(self::TYPES_REGISTRY_KEY);
         if (is_array($registry) && isset($registry[$attributeSetId][$targetCountry])) {
@@ -189,6 +192,7 @@ class Mage_GoogleShopping_Model_Item extends Mage_Core_Model_Abstract
      * Product Setter.
      *
      * @param Mage_Catalog_Model_Product
+     *
      * @return Mage_GoogleShopping_Model_Item
      */
     public function setProduct(Mage_Catalog_Model_Product $product)

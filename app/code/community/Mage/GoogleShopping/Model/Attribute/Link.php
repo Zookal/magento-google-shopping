@@ -36,8 +36,9 @@ class Mage_GoogleShopping_Model_Attribute_Link extends Mage_GoogleShopping_Model
     /**
      * Set current attribute to entry (for specified product)
      *
-     * @param Mage_Catalog_Model_Product $product
+     * @param Mage_Catalog_Model_Product   $product
      * @param Varien_Gdata_Gshopping_Entry $entry
+     *
      * @return Varien_Gdata_Gshopping_Entry
      */
     public function convertAttribute($product, $entry)
@@ -46,7 +47,7 @@ class Mage_GoogleShopping_Model_Attribute_Link extends Mage_GoogleShopping_Model
         if ($url) {
             if (!Mage::getStoreConfigFlag('web/url/use_store')) {
                 $urlInfo = parse_url($url);
-                $store = $product->getStore()->getCode();
+                $store   = $product->getStore()->getCode();
                 if (isset($urlInfo['query']) && $urlInfo['query'] != '') {
                     $url .= '&___store=' . $store;
                 } else {

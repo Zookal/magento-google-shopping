@@ -48,7 +48,7 @@ class Mage_GoogleShopping_Block_Adminhtml_Items_Item extends Mage_Adminhtml_Bloc
     protected function _prepareCollection()
     {
         $collection = Mage::getResourceModel('googleshopping/item_collection');
-        $store = $this->_getStore();
+        $store      = $this->_getStore();
         $collection->addStoreFilter($store->getId());
         $this->setCollection($collection);
         parent::_prepareCollection();
@@ -64,18 +64,18 @@ class Mage_GoogleShopping_Block_Adminhtml_Items_Item extends Mage_Adminhtml_Bloc
     {
         $this->addColumn('name',
             array(
-                'header'    => $this->__('Product Name'),
-                'width'     => '30%',
-                'index'     => 'name',
-        ));
+                'header' => $this->__('Product Name'),
+                'width'  => '30%',
+                'index'  => 'name',
+            ));
 
         $this->addColumn('expires',
             array(
-                'header'    => $this->__('Expires'),
-                'type'      => 'datetime',
-                'width'     => '100px',
-                'index'     => 'expires',
-        ));
+                'header' => $this->__('Expires'),
+                'type'   => 'datetime',
+                'width'  => '100px',
+                'index'  => 'expires',
+            ));
 
         return parent::_prepareColumns();
     }
@@ -92,15 +92,15 @@ class Mage_GoogleShopping_Block_Adminhtml_Items_Item extends Mage_Adminhtml_Bloc
         $this->setNoFilterMassactionColumn(true);
 
         $this->getMassactionBlock()->addItem('delete', array(
-             'label'    => $this->__('Delete'),
-             'url'      => $this->getUrl('*/*/massDelete', array('_current'=>true)),
-             'confirm'  => $this->__('Are you sure?')
+            'label'   => $this->__('Delete'),
+            'url'     => $this->getUrl('*/*/massDelete', array('_current' => true)),
+            'confirm' => $this->__('Are you sure?')
         ));
 
         $this->getMassactionBlock()->addItem('refresh', array(
-             'label'    => $this->__('Synchronize'),
-             'url'      => $this->getUrl('*/*/refresh', array('_current'=>true)),
-             'confirm'  => $this->__('This action will update items attributes and remove the items which are not available in Google Content. If an attributes was deleted from mapping, it will be deleted from Google too. Continue?')
+            'label'   => $this->__('Synchronize'),
+            'url'     => $this->getUrl('*/*/refresh', array('_current' => true)),
+            'confirm' => $this->__('This action will update items attributes and remove the items which are not available in Google Content. If an attributes was deleted from mapping, it will be deleted from Google too. Continue?')
         ));
         return $this;
     }
@@ -112,7 +112,7 @@ class Mage_GoogleShopping_Block_Adminhtml_Items_Item extends Mage_Adminhtml_Bloc
      */
     public function getGridUrl()
     {
-        return $this->getUrl('*/*/grid', array('_current'=>true));
+        return $this->getUrl('*/*/grid', array('_current' => true));
     }
 
     /**

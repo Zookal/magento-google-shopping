@@ -1,6 +1,6 @@
 <?php
 /**
-/**
+ * /**
  * Magento
  *
  * NOTICE OF LICENSE
@@ -50,6 +50,7 @@ class Varien_Gdata_Gshopping_Extension_Shipping extends Zend_Gdata_App_Extension
      * Creates instance of class
      *
      * @param array $shippingInfo as described in product requirements
+     *
      * @see http://code.google.com/intl/ru/apis/shopping/content/getting-started/requirements-products.html#tax
      */
     public function __construct(array $shippingInfo = array())
@@ -71,6 +72,7 @@ class Varien_Gdata_Gshopping_Extension_Shipping extends Zend_Gdata_App_Extension
      * Magic getter to add access to _shippingInfo data
      *
      * @param string $name
+     *
      * @return mixed
      */
     public function __get($name)

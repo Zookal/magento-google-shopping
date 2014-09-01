@@ -51,17 +51,17 @@ class Mage_GoogleShopping_Model_Resource_Type_Collection extends Mage_Core_Model
         return $this;
     }
 
-   /**
-    * Get SQL for get record count
-    *
-    * @return Varien_Db_Select
-    */
-   public function getSelectCountSql()
-   {
-       $this->_renderFilters();
-       $paginatorAdapter = new Zend_Paginator_Adapter_DbSelect($this->getSelect());
-       return $paginatorAdapter->getCountSelect();
-   }
+    /**
+     * Get SQL for get record count
+     *
+     * @return Varien_Db_Select
+     */
+    public function getSelectCountSql()
+    {
+        $this->_renderFilters();
+        $paginatorAdapter = new Zend_Paginator_Adapter_DbSelect($this->getSelect());
+        return $paginatorAdapter->getCountSelect();
+    }
 
     /**
      * Add total count of Items for each type
@@ -72,7 +72,7 @@ class Mage_GoogleShopping_Model_Resource_Type_Collection extends Mage_Core_Model
     {
         $this->getSelect()
             ->joinLeft(
-                array('items'=>$this->getTable('googleshopping/items')),
+                array('items' => $this->getTable('googleshopping/items')),
                 'main_table.type_id=items.type_id',
                 array('items_total' => new Zend_Db_Expr('COUNT(items.item_id)')))
             ->group('main_table.type_id');
@@ -83,6 +83,7 @@ class Mage_GoogleShopping_Model_Resource_Type_Collection extends Mage_Core_Model
      * Add country ISO filter to collection
      *
      * @param string $iso Two-letter country ISO code
+     *
      * @return Mage_GoogleShopping_Model_Mysql4_Type_Collection
      */
     public function addCountryFilter($iso)
@@ -100,7 +101,7 @@ class Mage_GoogleShopping_Model_Resource_Type_Collection extends Mage_Core_Model
     {
         $this->getSelect()
             ->join(
-                array('set'=>$this->getTable('eav/attribute_set')),
+                array('set' => $this->getTable('eav/attribute_set')),
                 'main_table.attribute_set_id=set.attribute_set_id',
                 array('attribute_set_name' => 'set.attribute_set_name'));
         return $this;

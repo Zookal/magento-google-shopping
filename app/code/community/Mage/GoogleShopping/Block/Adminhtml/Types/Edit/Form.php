@@ -31,7 +31,6 @@
  * @package    Mage_GoogleShopping
  * @author     Magento Core Team <core@magentocommerce.com>
  */
-
 class Mage_GoogleShopping_Block_Adminhtml_Types_Edit_Form extends Mage_Adminhtml_Block_Widget_Form
 {
     /**
@@ -46,20 +45,20 @@ class Mage_GoogleShopping_Block_Adminhtml_Types_Edit_Form extends Mage_Adminhtml
         $itemType = $this->getItemType();
 
         $fieldset = $form->addFieldset('content_fieldset', array(
-            'legend'    => $this->__('Attribute set mapping')
+            'legend' => $this->__('Attribute set mapping')
         ));
 
-        if ( !($targetCountry = $itemType->getTargetCountry()) ) {
-            $isoKeys = array_keys($this->_getCountriesArray());
+        if (!($targetCountry = $itemType->getTargetCountry())) {
+            $isoKeys       = array_keys($this->_getCountriesArray());
             $targetCountry = isset($isoKeys[0]) ? $isoKeys[0] : null;
         }
         $countrySelect = $fieldset->addField('select_target_country', 'select', array(
-            'label'     => $this->__('Target Country'),
-            'title'     => $this->__('Target Country'),
-            'name'      => 'target_country',
-            'required'  => true,
-            'options'   => $this->_getCountriesArray(),
-            'value'     => $targetCountry,
+            'label'    => $this->__('Target Country'),
+            'title'    => $this->__('Target Country'),
+            'name'     => 'target_country',
+            'required' => true,
+            'options'  => $this->_getCountriesArray(),
+            'value'    => $targetCountry,
         ));
         if ($itemType->getTargetCountry()) {
             $countrySelect->setDisabled(true);
@@ -72,20 +71,20 @@ class Mage_GoogleShopping_Block_Adminhtml_Types_Edit_Form extends Mage_Adminhtml
         }
 
         $fieldset->addField('attribute_set', 'note', array(
-            'label'     => $this->__('Attribute Set'),
-            'title'     => $this->__('Attribute Set'),
-            'required'  => true,
-            'text'      => '<div id="attribute_set_select">' . $attributeSetsSelect->toHtml() . '</div>',
+            'label'    => $this->__('Attribute Set'),
+            'title'    => $this->__('Attribute Set'),
+            'required' => true,
+            'text'     => '<div id="attribute_set_select">' . $attributeSetsSelect->toHtml() . '</div>',
         ));
 
         $categories = Mage::helper('googleshopping/category')->getCategories();
         $fieldset->addField('category', 'select', array(
-            'label'     => $this->__('Google Product Category'),
-            'title'     => $this->__('Google Product Category'),
-            'required'  => true,
-            'name'      => 'category',
-            'options'   => array_combine($categories, array_map('htmlspecialchars_decode', $categories)),
-            'value'      => $itemType->getCategory(),
+            'label'    => $this->__('Google Product Category'),
+            'title'    => $this->__('Google Product Category'),
+            'required' => true,
+            'name'     => 'category',
+            'options'  => array_combine($categories, array_map('htmlspecialchars_decode', $categories)),
+            'value'    => $itemType->getCategory(),
         ));
 
         $attributesBlock = $this->getLayout()
@@ -102,8 +101,8 @@ class Mage_GoogleShopping_Block_Adminhtml_Types_Edit_Form extends Mage_Adminhtml
         }
 
         $fieldset->addField('attributes_box', 'note', array(
-            'label'     => $this->__('Attributes Mapping'),
-            'text'      => '<div id="attributes_details">' . $attributesBlock->toHtml() . '</div>',
+            'label' => $this->__('Attributes Mapping'),
+            'text'  => '<div id="attributes_details">' . $attributesBlock->toHtml() . '</div>',
         ));
 
         $form->addValues($itemType->getData());
@@ -120,6 +119,7 @@ class Mage_GoogleShopping_Block_Adminhtml_Types_Edit_Form extends Mage_Adminhtml
      * Get Select field with list of available attribute sets for some target country
      *
      * @param  string $targetCountry
+     *
      * @return Varien_Data_Form_Element_Select
      */
     public function getAttributeSetsSelectElement($targetCountry)
@@ -141,7 +141,7 @@ class Mage_GoogleShopping_Block_Adminhtml_Types_Edit_Form extends Mage_Adminhtml
     protected function _getCountriesArray()
     {
         $_allowed = Mage::getSingleton('googleshopping/config')->getAllowedCountries();
-        $result = array();
+        $result   = array();
         foreach ($_allowed as $iso => $info) {
             $result[$iso] = $info['name'];
         }
@@ -152,6 +152,7 @@ class Mage_GoogleShopping_Block_Adminhtml_Types_Edit_Form extends Mage_Adminhtml
      * Get array with attribute setes which available for some target country
      *
      * @param  string $targetCountry
+     *
      * @return array
      */
     protected function _getAttributeSetsArray($targetCountry)
@@ -160,9 +161,9 @@ class Mage_GoogleShopping_Block_Adminhtml_Types_Edit_Form extends Mage_Adminhtml
         $collection = Mage::getResourceModel('eav/entity_attribute_set_collection')
             ->setEntityTypeFilter($entityType->getId());
 
-        $ids = array();
+        $ids      = array();
         $itemType = $this->getItemType();
-        if ( !($itemType instanceof Varien_Object && $itemType->getId()) ) {
+        if (!($itemType instanceof Varien_Object && $itemType->getId())) {
             $typesCollection = Mage::getResourceModel('googleshopping/type_collection')
                 ->addCountryFilter($targetCountry)
                 ->load();

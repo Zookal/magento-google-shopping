@@ -24,7 +24,6 @@
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-
 /**
  * Adminhtml Google Content Item Type Country Renderer
  *
@@ -39,6 +38,7 @@ class Mage_GoogleShopping_Block_Adminhtml_Types_Renderer_Country
      * Renders Google Content Item Id
      *
      * @param   Varien_Object $row
+     *
      * @return  string
      */
     public function render(Varien_Object $row)

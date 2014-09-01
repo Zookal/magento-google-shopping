@@ -48,8 +48,9 @@ class Mage_GoogleShopping_Model_Type extends Mage_Core_Model_Abstract
     /**
      * Load type model by Attribute Set Id and Target Country
      *
-     * @param int $attributeSetId Attribute Set
-     * @param string $targetCountry Two-letters country ISO code
+     * @param int    $attributeSetId Attribute Set
+     * @param string $targetCountry  Two-letters country ISO code
+     *
      * @return Mage_GoogleShopping_Model_Type
      */
     public function loadByAttributeSetId($attributeSetId, $targetCountry)
@@ -62,12 +63,13 @@ class Mage_GoogleShopping_Model_Type extends Mage_Core_Model_Abstract
      * Prepare Entry data and attributes before saving in Google Content
      *
      * @param Varien_Gdata_Gshopping_Entry $entry
+     *
      * @return Varien_Gdata_Gshopping_Entry
      */
     public function convertProductToEntry($product, $entry)
     {
-        $map = $this->_getAttributesMapByProduct($product);
-        $base = $this->_getBaseAttributes();
+        $map        = $this->_getAttributesMapByProduct($product);
+        $base       = $this->_getBaseAttributes();
         $attributes = array_merge($base, $map);
 
         $this->_removeNonexistentAttributes($entry, array_keys($attributes));
@@ -83,12 +85,13 @@ class Mage_GoogleShopping_Model_Type extends Mage_Core_Model_Abstract
      * Return Product attribute values array
      *
      * @param Mage_Catalog_Model_Product $product
+     *
      * @return array Product attribute values
      */
     protected function _getAttributesMapByProduct(Mage_Catalog_Model_Product $product)
     {
         $result = array();
-        $group = Mage::getSingleton('googleshopping/config')->getAttributeGroupsFlat();
+        $group  = Mage::getSingleton('googleshopping/config')->getAttributeGroupsFlat();
         foreach ($this->_getAttributesCollection() as $attribute) {
             $productAttribute = Mage::helper('googleshopping/product')
                 ->getProductAttribute($product, $attribute->getAttributeId());
@@ -133,7 +136,7 @@ class Mage_GoogleShopping_Model_Type extends Mage_Core_Model_Abstract
      */
     protected function _getBaseAttributes()
     {
-        $names = Mage::getSingleton('googleshopping/config')->getBaseAttributes();
+        $names      = Mage::getSingleton('googleshopping/config')->getBaseAttributes();
         $attributes = array();
         foreach ($names as $name) {
             $attributes[$name] = $this->_createAttribute($name);
@@ -146,6 +149,7 @@ class Mage_GoogleShopping_Model_Type extends Mage_Core_Model_Abstract
      * Append to attributes array subattribute's models
      *
      * @param array $attributes
+     *
      * @return array
      */
     protected function _initGroupAttributes($attributes)
@@ -153,10 +157,11 @@ class Mage_GoogleShopping_Model_Type extends Mage_Core_Model_Abstract
         $group = Mage::getSingleton('googleshopping/config')->getAttributeGroupsFlat();
         foreach ($group as $child => $parent) {
             if (isset($attributes[$parent]) &&
-                !isset($attributes[$parent]['group_attribute_' . $child])) {
-                    $attributes[$parent]->addData(
-                        array('group_attribute_' . $child => $this->_createAttribute($child))
-                    );
+                !isset($attributes[$parent]['group_attribute_' . $child])
+            ) {
+                $attributes[$parent]->addData(
+                    array('group_attribute_' . $child => $this->_createAttribute($child))
+                );
             }
         }
 
@@ -167,6 +172,7 @@ class Mage_GoogleShopping_Model_Type extends Mage_Core_Model_Abstract
      * Prepare Google Content attribute model name
      *
      * @param string Attribute name
+     *
      * @return string Normalized attribute name
      */
     protected function _prepareModelName($string)
@@ -179,15 +185,16 @@ class Mage_GoogleShopping_Model_Type extends Mage_Core_Model_Abstract
      * Create attribute instance using attribute's name
      *
      * @param string $name
+     *
      * @return Mage_GoogleShopping_Model_Attribute
      */
     protected function _createAttribute($name)
     {
-        $modelName = 'googleshopping/attribute_' . $this->_prepareModelName($name);
+        $modelName  = 'googleshopping/attribute_' . $this->_prepareModelName($name);
         $useDefault = false;
         try {
             $attributeModel = Mage::getModel($modelName);
-            $useDefault = !$attributeModel;
+            $useDefault     = !$attributeModel;
         } catch (Exception $e) {
             $useDefault = true;
         }
@@ -218,7 +225,8 @@ class Mage_GoogleShopping_Model_Type extends Mage_Core_Model_Abstract
      * Remove attributes which were removed from mapping.
      *
      * @param Varien_Gdata_Gshopping_Entry $entry
-     * @param array $existAttributes
+     * @param array                        $existAttributes
+     *
      * @return Varien_Gdata_Gshopping_Entry
      */
     protected function _removeNonexistentAttributes($entry, $existAttributes)
@@ -237,8 +245,9 @@ class Mage_GoogleShopping_Model_Type extends Mage_Core_Model_Abstract
         foreach ($contentAttributes as $contentAttribute) {
             $name = Mage::helper('googleshopping')->normalizeName($contentAttribute->getName());
             if (!in_array($name, $ignoredAttributes) &&
-                !in_array($existAttributes, $existAttributes)) {
-                    $entry->removeContentAttribute($name);
+                !in_array($existAttributes, $existAttributes)
+            ) {
+                $entry->removeContentAttribute($name);
             }
         }
 

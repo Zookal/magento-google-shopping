@@ -38,16 +38,17 @@ class Mage_GoogleShopping_Model_Attribute_Default extends Mage_GoogleShopping_Mo
      *
      * @var string
      */
-    const ATTRIBUTE_TYPE_TEXT    = 'text';
-    const ATTRIBUTE_TYPE_INT     = 'int';
-    const ATTRIBUTE_TYPE_FLOAT   = 'float';
-    const ATTRIBUTE_TYPE_URL     = 'url';
+    const ATTRIBUTE_TYPE_TEXT  = 'text';
+    const ATTRIBUTE_TYPE_INT   = 'int';
+    const ATTRIBUTE_TYPE_FLOAT = 'float';
+    const ATTRIBUTE_TYPE_URL   = 'url';
 
     /**
      * Set current attribute to entry (for specified product)
      *
-     * @param Mage_Catalog_Model_Product $product
+     * @param Mage_Catalog_Model_Product   $product
      * @param Varien_Gdata_Gshopping_Entry $entry
+     *
      * @return Varien_Gdata_Gshopping_Entry
      */
     public function convertAttribute($product, $entry)
@@ -57,8 +58,8 @@ class Mage_GoogleShopping_Model_Attribute_Default extends Mage_GoogleShopping_Mo
         }
         $productAttribute = Mage::helper('googleshopping/product')
             ->getProductAttribute($product, $this->getAttributeId());
-        $type = $this->getGcontentAttributeType($productAttribute);
-        $value = $this->getProductAttributeValue($product);
+        $type             = $this->getGcontentAttributeType($productAttribute);
+        $value            = $this->getProductAttributeValue($product);
 
         if (!is_null($value)) {
             $entry = $this->_setAttribute($entry, $this->getName(), $type, $value);
@@ -70,6 +71,7 @@ class Mage_GoogleShopping_Model_Attribute_Default extends Mage_GoogleShopping_Mo
      * Get current attribute value for specified product
      *
      * @param Mage_Catalog_Model_Product $product
+     *
      * @return null|string
      */
     public function getProductAttributeValue($product)
@@ -85,13 +87,14 @@ class Mage_GoogleShopping_Model_Attribute_Default extends Mage_GoogleShopping_Mo
         }
 
         if ($productAttribute->getFrontendInput() == 'date' ||
-            $productAttribute->getBackendType() == 'date') {
-                $value = $product->getData($productAttribute->getAttributeCode());
-                if (empty($value) || !Zend_Date::isDate($value, Zend_Date::ISO_8601)) {
-                    return null;
-                }
-                $date = new Zend_Date($value, Zend_Date::ISO_8601);
-                $value = $date->toString(Zend_Date::ATOM);
+            $productAttribute->getBackendType() == 'date'
+        ) {
+            $value = $product->getData($productAttribute->getAttributeCode());
+            if (empty($value) || !Zend_Date::isDate($value, Zend_Date::ISO_8601)) {
+                return null;
+            }
+            $date  = new Zend_Date($value, Zend_Date::ISO_8601);
+            $value = $date->toString(Zend_Date::ATOM);
         } else {
             $value = $productAttribute->getFrontend()->getValue($product);
         }
@@ -102,13 +105,14 @@ class Mage_GoogleShopping_Model_Attribute_Default extends Mage_GoogleShopping_Mo
      * Return Google Content Attribute Type By Product Attribute
      *
      * @param Mage_Catalog_Model_Resource_Eav_Attribute $attribute
+     *
      * @return string Google Content Attribute Type
      */
     public function getGcontentAttributeType($attribute)
     {
         $typesMapping = array(
-            'price'      => self::ATTRIBUTE_TYPE_FLOAT,
-            'decimal'    => self::ATTRIBUTE_TYPE_INT,
+            'price'   => self::ATTRIBUTE_TYPE_FLOAT,
+            'decimal' => self::ATTRIBUTE_TYPE_INT,
         );
         if (isset($typesMapping[$attribute->getFrontendInput()])) {
             return $typesMapping[$attribute->getFrontendInput()];
@@ -123,10 +127,11 @@ class Mage_GoogleShopping_Model_Attribute_Default extends Mage_GoogleShopping_Mo
      * Insert/update attribute in the entry
      *
      * @param Varien_Gdata_Gshopping_Entry $entry
-     * @param string $name
-     * @param string $type
-     * @param string $value
-     * @param string $unit
+     * @param string                       $name
+     * @param string                       $type
+     * @param string                       $value
+     * @param string                       $unit
+     *
      * @return Varien_Gdata_Gshopping_Entry
      */
     protected function _setAttribute($entry, $name, $type = self::ATTRIBUTE_TYPE_TEXT, $value = '', $unit = null)
@@ -138,7 +143,7 @@ class Mage_GoogleShopping_Model_Attribute_Default extends Mage_GoogleShopping_Mo
         }
         $attribute = $entry->getContentAttributeByName($name);
         if ($attribute instanceof Varien_Gdata_Gshopping_Extension_Attribute) {
-            $attribute->text = (string) $value;
+            $attribute->text = (string)$value;
             $attribute->type = $type;
             if (!is_null($unit)) {
                 $attribute->unit = $unit;

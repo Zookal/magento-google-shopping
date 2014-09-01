@@ -54,6 +54,7 @@ class Mage_GoogleShopping_Model_Resource_Item_Collection extends Mage_Core_Model
      * Filter collection by specified store ids
      *
      * @param array|int $storeIds
+     *
      * @return Mage_GoogleShopping_Model_Mysql4_Item_Collection
      */
     public function addStoreFilter($storeIds)
@@ -66,6 +67,7 @@ class Mage_GoogleShopping_Model_Resource_Item_Collection extends Mage_Core_Model
      * Filter collection by specified product id
      *
      * @param int $productId
+     *
      * @return Mage_GoogleShopping_Model_Mysql4_Item_Collection
      */
     public function addProductFilterId($productId)
@@ -78,11 +80,13 @@ class Mage_GoogleShopping_Model_Resource_Item_Collection extends Mage_Core_Model
      * Add field filter to collection
      *
      * @see self::_getConditionSql for $condition
-     * @param string $field
+     *
+     * @param string            $field
      * @param null|string|array $condition
+     *
      * @return Mage_Eav_Model_Entity_Collection_Abstract
      */
-    public function addFieldToFilter($field, $condition=null)
+    public function addFieldToFilter($field, $condition = null)
     {
         if ($field == 'name') {
             $conditionSql = $this->_getConditionSql(
@@ -103,13 +107,13 @@ class Mage_GoogleShopping_Model_Resource_Item_Collection extends Mage_Core_Model
     protected function _joinTables()
     {
         $entityType = Mage::getSingleton('eav/config')->getEntityType('catalog_product');
-        $attribute = Mage::getSingleton('eav/config')->getAttribute($entityType->getEntityTypeId(),'name');
+        $attribute  = Mage::getSingleton('eav/config')->getAttribute($entityType->getEntityTypeId(), 'name');
 
         $joinConditionDefault =
             sprintf("p_d.attribute_id=%d AND p_d.store_id='0' AND main_table.product_id=p_d.entity_id",
                 $attribute->getAttributeId()
             );
-        $joinCondition =
+        $joinCondition        =
             sprintf("p.attribute_id=%d AND p.store_id=main_table.store_id AND main_table.product_id=p.entity_id",
                 $attribute->getAttributeId()
             );

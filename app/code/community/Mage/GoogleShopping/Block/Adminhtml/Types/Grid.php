@@ -63,26 +63,26 @@ class Mage_GoogleShopping_Block_Adminhtml_Types_Grid extends Mage_Adminhtml_Bloc
     {
         $this->addColumn('attribute_set_name',
             array(
-                'header'    => $this->__('Attributes Set'),
-                'index'     => 'attribute_set_name',
-        ));
+                'header' => $this->__('Attributes Set'),
+                'index'  => 'attribute_set_name',
+            ));
 
         $this->addColumn('target_country',
             array(
-                'header'    => $this->__('Target Country'),
-                'width'     => '150px',
-                'index'     => 'target_country',
-                'renderer'  => 'googleshopping/adminhtml_types_renderer_country',
-                'filter'    => false
-        ));
+                'header'   => $this->__('Target Country'),
+                'width'    => '150px',
+                'index'    => 'target_country',
+                'renderer' => 'googleshopping/adminhtml_types_renderer_country',
+                'filter'   => false
+            ));
 
         $this->addColumn('items_total',
             array(
-                'header'    => Mage::helper('catalog')->__('Total Qty Content Items'),
-                'width'     => '150px',
-                'index'     => 'items_total',
-                'filter'    => false
-        ));
+                'header' => Mage::helper('catalog')->__('Total Qty Content Items'),
+                'width'  => '150px',
+                'index'  => 'items_total',
+                'filter' => false
+            ));
 
         return parent::_prepareColumns();
     }
@@ -91,11 +91,12 @@ class Mage_GoogleShopping_Block_Adminhtml_Types_Grid extends Mage_Adminhtml_Bloc
      * Return row url for js event handlers
      *
      * @param Varien_Object
+     *
      * @return string
      */
     public function getRowUrl($row)
     {
-        return $this->getUrl('*/*/edit', array('id'=>$row->getId(), '_current'=>true));
+        return $this->getUrl('*/*/edit', array('id' => $row->getId(), '_current' => true));
     }
 
     /**
@@ -105,6 +106,6 @@ class Mage_GoogleShopping_Block_Adminhtml_Types_Grid extends Mage_Adminhtml_Bloc
      */
     public function getGridUrl()
     {
-        return $this->getUrl('*/*/grid', array('_current'=>true));
+        return $this->getUrl('*/*/grid', array('_current' => true));
     }
 }

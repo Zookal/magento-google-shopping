@@ -41,6 +41,7 @@ class Mage_GoogleShopping_Helper_Price
      *
      * @param Mage_Catalog_Model_Product $product
      * @param null|Mage_Core_Model_Store $store Store view
+     *
      * @return null|float Price
      */
     public function getCatalogPrice(Mage_Catalog_Model_Product $product, $store = null, $inclTax = null)
@@ -82,7 +83,8 @@ class Mage_GoogleShopping_Helper_Price
                 Mage::register('rule_data', new Varien_Object(array(
                     'store_id'          => $product->getStoreId(),
                     'website_id'        => $product->getWebsiteId(),
-                    'customer_group_id' => $product->getCustomerGroupId())));
+                    'customer_group_id' => $product->getCustomerGroupId()
+                )));
 
                 $minPrice = $product->getPriceModel()->getPricesDependingOnTax($product, 'min', $inclTax);
 
@@ -101,12 +103,13 @@ class Mage_GoogleShopping_Helper_Price
 
     /**
      * Tries calculate price without discount; if can't returns null
+     *
      * @param $product
      * @param $store
      */
     public function getCatalogRegularPrice(Mage_Catalog_Model_Product $product, $store = null)
     {
-         switch ($product->getTypeId()) {
+        switch ($product->getTypeId()) {
             case Mage_Catalog_Model_Product_Type::TYPE_GROUPED:
             case Mage_Catalog_Model_Product_Type::TYPE_BUNDLE:
             case 'giftcard':

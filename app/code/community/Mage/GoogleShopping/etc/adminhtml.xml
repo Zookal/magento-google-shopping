@@ -1,5 +1,4 @@
-<?xml version="1.0"?>
-<!--
+<?xml version="1.0"?><!--
 /**
  * Magento
  *
@@ -43,7 +42,7 @@
                     </children>
                     <sort_order>70</sort_order>
                 </googleshopping>
-             </children>
+            </children>
         </catalog>
     </menu>
     <acl>

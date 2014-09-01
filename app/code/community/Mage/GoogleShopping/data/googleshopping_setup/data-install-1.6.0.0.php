@@ -63,7 +63,7 @@ if (Mage::helper('googleshopping')->isModuleEnabled('Mage_GoogleBase')) {
             $attributes .= "'$code',";
         }
     }
-    $attributes = rtrim($attributes, ',');
+    $attributes       = rtrim($attributes, ',');
     $attributesInsert = $installer->getConnection()
         ->select()
         ->from(

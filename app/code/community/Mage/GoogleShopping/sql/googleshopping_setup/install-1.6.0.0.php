@@ -40,19 +40,19 @@ $connection = $installer->getConnection();
 
 $table = $connection->newTable($this->getTable('googleshopping/types'))
     ->addColumn('type_id', Varien_Db_Ddl_Table::TYPE_INTEGER, null, array(
-        'identity'  => true,
+        'identity' => true,
         'unsigned' => true,
         'nullable' => false,
-        'primary' => true
-        ), 'Type ID')
+        'primary'  => true
+    ), 'Type ID')
     ->addColumn('attribute_set_id', Varien_Db_Ddl_Table::TYPE_SMALLINT, null, array(
         'unsigned' => true,
         'nullable' => false
-        ), 'Attribute Set Id')
+    ), 'Attribute Set Id')
     ->addColumn('target_country', Varien_Db_Ddl_Table::TYPE_TEXT, 2, array(
         'nullable' => false,
-        'default' => 'US'
-        ), 'Target country')
+        'default'  => 'US'
+    ), 'Target country')
     ->addForeignKey(
         $installer->getFkName(
             'googleshopping/types',
@@ -77,27 +77,27 @@ $installer->getConnection()->createTable($table);
 
 $table = $connection->newTable($this->getTable('googleshopping/items'))
     ->addColumn('item_id', Varien_Db_Ddl_Table::TYPE_INTEGER, null, array(
-        'identity'  => true,
+        'identity' => true,
         'nullable' => false,
         'unsigned' => true,
-        'primary' => true
-        ), 'Item Id')
+        'primary'  => true
+    ), 'Item Id')
     ->addColumn('type_id', Varien_Db_Ddl_Table::TYPE_INTEGER, null, array(
         'nullable' => false,
         'unsigned' => true,
-        'default' => 0
-        ), 'Type Id')
+        'default'  => 0
+    ), 'Type Id')
     ->addColumn('product_id', Varien_Db_Ddl_Table::TYPE_INTEGER, null, array(
         'nullable' => false,
         'unsigned' => true
-        ), 'Product Id')
+    ), 'Product Id')
     ->addColumn('gcontent_item_id', Varien_Db_Ddl_Table::TYPE_TEXT, 255, array(
         'nullable' => false
-        ), 'Google Content Item Id')
+    ), 'Google Content Item Id')
     ->addColumn('store_id', Varien_Db_Ddl_Table::TYPE_SMALLINT, null, array(
         'nullable' => false,
         'unsigned' => true
-        ), 'Store Id')
+    ), 'Store Id')
     ->addColumn('published', Varien_Db_Ddl_Table::TYPE_DATETIME, null, array(), 'Published date')
     ->addColumn('expires', Varien_Db_Ddl_Table::TYPE_DATETIME, null, array(), 'Expires date')
     ->addForeignKey(
@@ -111,7 +111,7 @@ $table = $connection->newTable($this->getTable('googleshopping/items'))
         $this->getTable('catalog/product'),
         'entity_id',
         Varien_Db_Ddl_Table::ACTION_CASCADE
-     )
+    )
     ->addForeignKey(
         $installer->getFkName(
             'googleshopping/items',
@@ -123,30 +123,30 @@ $table = $connection->newTable($this->getTable('googleshopping/items'))
         $this->getTable('core/store'),
         'store_id',
         Varien_Db_Ddl_Table::ACTION_CASCADE
-     )
+    )
     ->addIndex($installer->getIdxName('googleshopping/items', array('product_id', 'store_id')),
-         array('product_id', 'store_id'))
+        array('product_id', 'store_id'))
     ->setComment('Google Content Items Products');
 $installer->getConnection()->createTable($table);
 
 $table = $connection->newTable($this->getTable('googleshopping/attributes'))
     ->addColumn('id', Varien_Db_Ddl_Table::TYPE_INTEGER, 10, array(
-        'identity'  => true,
+        'identity' => true,
         'nullable' => false,
         'unsigned' => true,
-        'primary' => true
-        ), 'Id')
+        'primary'  => true
+    ), 'Id')
     ->addColumn('attribute_id', Varien_Db_Ddl_Table::TYPE_SMALLINT, null, array(
         'nullable' => false,
         'unsigned' => true
-        ), 'Attribute Id')
+    ), 'Attribute Id')
     ->addColumn('gcontent_attribute', Varien_Db_Ddl_Table::TYPE_TEXT, 255, array(
         'nullable' => false
-        ), 'Google Content Attribute')
+    ), 'Google Content Attribute')
     ->addColumn('type_id', Varien_Db_Ddl_Table::TYPE_INTEGER, null, array(
         'nullable' => false,
         'unsigned' => true
-        ), 'Type Id')
+    ), 'Type Id')
     ->addForeignKey(
         $installer->getFkName(
             'googleshopping/attributes',
@@ -158,7 +158,7 @@ $table = $connection->newTable($this->getTable('googleshopping/attributes'))
         $this->getTable('eav/attribute'),
         'attribute_id',
         Varien_Db_Ddl_Table::ACTION_CASCADE
-     )
+    )
     ->addForeignKey(
         $installer->getFkName(
             'googleshopping/attributes',
@@ -170,8 +170,8 @@ $table = $connection->newTable($this->getTable('googleshopping/attributes'))
         $this->getTable('googleshopping/types'),
         'type_id',
         Varien_Db_Ddl_Table::ACTION_CASCADE
-     )
-     ->setComment('Google Content Attributes link Product Attributes');
+    )
+    ->setComment('Google Content Attributes link Product Attributes');
 $installer->getConnection()->createTable($table);
 
 $installer->endSetup();

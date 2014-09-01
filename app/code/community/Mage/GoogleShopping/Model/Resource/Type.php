@@ -42,8 +42,9 @@ class Mage_GoogleShopping_Model_Resource_Type extends Mage_Core_Model_Resource_D
      * Return Type ID by Attribute Set Id and target country
      *
      * @param Mage_GoogleShopping_Model_Type $model
-     * @param int $attributeSetId Attribute Set
-     * @param string $targetCountry Two-letters country ISO code
+     * @param int                            $attributeSetId Attribute Set
+     * @param string                         $targetCountry  Two-letters country ISO code
+     *
      * @return Mage_GoogleShopping_Model_Type
      */
     public function loadByAttributeSetIdAndTargetCountry($model, $attributeSetId, $targetCountry)

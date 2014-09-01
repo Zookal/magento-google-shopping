@@ -76,19 +76,20 @@ class Mage_GoogleShopping_Model_Attribute extends Mage_Core_Model_Abstract
      * Get array with allowed product attributes (for mapping) by selected attribute set
      *
      * @param int $setId attribute set id
+     *
      * @return array
      */
     public function getAllowedAttributes($setId)
     {
         $attributes = Mage::getModel('catalog/product')->getResource()
-                ->loadAllAttributes()
-                ->getSortedAttributes($setId);
+            ->loadAllAttributes()
+            ->getSortedAttributes($setId);
 
         $titles = array();
         foreach ($attributes as $attribute) {
             /* @var $attribute Mage_Catalog_Model_Resource_Eav_Attribute */
             if ($attribute->isInSet($setId) && $this->_isAllowedAttribute($attribute)) {
-                $list[$attribute->getAttributeId()] = $attribute;
+                $list[$attribute->getAttributeId()]   = $attribute;
                 $titles[$attribute->getAttributeId()] = $attribute->getFrontendLabel();
             }
         }
@@ -104,13 +105,14 @@ class Mage_GoogleShopping_Model_Attribute extends Mage_Core_Model_Abstract
      * Check if attribute allowed
      *
      * @param Mage_Eav_Model_Entity_Attribute_Abstract $attribute
-     * @param array $attributes
+     * @param array                                    $attributes
+     *
      * @return boolean
      */
     protected function _isAllowedAttribute($attribute)
     {
         return !in_array($attribute->getFrontendInput(), $this->_ignoredAttributeTypes)
-               && !in_array($attribute->getAttributeCode(), $this->_ignoredAttributeCodes)
-               && $attribute->getFrontendLabel() != "";
+        && !in_array($attribute->getAttributeCode(), $this->_ignoredAttributeCodes)
+        && $attribute->getFrontendLabel() != "";
     }
 }

@@ -44,7 +44,7 @@ class Mage_GoogleShopping_Adminhtml_Googleshopping_SelectionController extends M
                 ->setIndex($this->getRequest()->getParam('index'))
                 ->setFirstShow(true)
                 ->toHtml()
-           );
+        );
     }
 
     /**
@@ -58,6 +58,6 @@ class Mage_GoogleShopping_Adminhtml_Googleshopping_SelectionController extends M
                 ->createBlock('googleshopping/adminhtml_items_product')
                 ->setIndex($this->getRequest()->getParam('index'))
                 ->toHtml()
-           );
+        );
     }
 }
