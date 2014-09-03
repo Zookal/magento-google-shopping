@@ -217,7 +217,7 @@
                 <!-- Available destinations for products. -->
                 <destinations>
                     <shopping>Shopping</shopping>
-                    <shopping_api>Shopping API</shopping_api>
+                    <shopping_api>ShoppingApi</shopping_api>
                 </destinations>
 
                 <!-- Attributes which available for customer's mapping.
