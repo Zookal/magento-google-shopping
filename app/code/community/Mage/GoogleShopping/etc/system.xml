@@ -105,33 +105,24 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </destinations>
-                        <product_search translate="label">
-                            <label>Google Product Search</label>
+                        <shopping translate="label">
+                            <label>Shopping</label>
                             <frontend_type>select</frontend_type>
                             <source_model>googleshopping/source_destinationstates</source_model>
                             <sort_order>151</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </product_search>
-                        <product_ads translate="label">
-                            <label>Product Ads</label>
+                        </shopping>
+                        <shopping_api translate="label">
+                            <label>Shopping API</label>
                             <frontend_type>select</frontend_type>
                             <source_model>googleshopping/source_destinationstates</source_model>
                             <sort_order>152</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </product_ads>
-                        <commerce_search translate="label">
-                            <label>Commerce Search</label>
-                            <frontend_type>select</frontend_type>
-                            <source_model>googleshopping/source_destinationstates</source_model>
-                            <sort_order>153</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </commerce_search>
+                        </shopping_api>
                     </fields>
                 </googleshopping>
             </groups>

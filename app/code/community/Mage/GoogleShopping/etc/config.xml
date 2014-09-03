@@ -216,9 +216,8 @@
 
                 <!-- Available destinations for products. -->
                 <destinations>
-                    <product_search>ProductSearch</product_search>
-                    <product_ads>ProductAds</product_ads>
-                    <commerce_search>CommerceSearch</commerce_search>
+                    <shopping>Shopping</shopping>
+                    <shopping_api>Shopping API</shopping_api>
                 </destinations>
 
                 <!-- Attributes which available for customer's mapping.
@@ -269,7 +268,7 @@
                         </adult>
 
                     </Item>
-                    <ProductSearch>
+                    <Shopping>
                         <condition translate="name">
                             <name>Condition</name>
                             <required>1</required>
@@ -349,8 +348,8 @@
                             <name>Pattern/Graphic</name>
                             <required>1</required>
                         </pattern>
-                    </ProductSearch>
-                    <ProductAds>
+                    </Shopping>
+                    <Shopping_api>
                         <adwords_grouping translate="name">
                             <name>Grouping</name>
                             <required>0</required>
@@ -367,7 +366,7 @@
                             <name>Query Param</name>
                             <required>0</required>
                         </adwords_queryparam>
-                    </ProductAds>
+                    </Shopping_api>
                 </attributes>
 
                 <!-- Groups are dependencies between attributes -->

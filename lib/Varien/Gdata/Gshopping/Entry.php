@@ -282,7 +282,7 @@ class Varien_Gdata_Gshopping_Entry extends Zend_Gdata_Entry
      *
      * @param  array $modes Array with destination names and their statuses.
      *                      format: array(name => Varien_Gdata_Gshopping_Extension_Control::DEST_MODE_*),
-     *                      for instance: array('ProductSearch' => 2)
+     *                      for instance: array('Shopping' => 2)
      *
      * @return Varien_Gdata_Gshopping_Entry
      */
